@@ -78,3 +78,11 @@ li.page-item a {
   object-position: top;
   object-fit: cover;
 }
+
+.modal-dialog {
+  text-align: center;
+}
+.modal-content,
+.modal-body {
+  display: inline-block;
+}

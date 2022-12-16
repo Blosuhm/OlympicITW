@@ -159,10 +159,12 @@
         <div class="card mt-3 mx-3" style="height: 36rem; width: 18rem">
           <!-- ko if: Photo -->
           <img
-            data-bind="if: Photo, attr: {src: Photo}"
+            data-bind="if: Photo, attr: {src: Photo, 'data-bs-target': '#img' + Id}"
             class="card-img-top rounded mt-2 h-100"
+            data-bs-toggle="modal"
             alt="..."
           />
+
           <!-- /ko -->
           <!-- ko ifnot: Photo -->
           <img
@@ -196,6 +198,26 @@
                 title="Selecione para adicionar aos favoritos"
               ></i>
             </button>
+          </div>
+        </div>
+        <div
+          class="modal fade"
+          data-bind="attr: {'id': 'img' + Id}"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content" style="width: auto">
+              <div class="modal-body">
+                <img
+                  data-bind="attr: {src: Photo}"
+                  class="rounded"
+                  style="height: 80vh"
+                  alt="..."
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
