@@ -31,7 +31,7 @@
           ><img
             src="images/Olympic_rings.svg"
             alt="heeheeha"
-            style="height: 1.5rem; object-fit: conatin"
+            style="height: 1.5rem; object-fit: contain"
         /></a>
         <button
           class="navbar-toggler"
@@ -156,11 +156,11 @@
       <!-- /ko -->
 
       <div id="my-cards" class="row row-cols-4" data-bind="foreach: records">
-        <div class="card mt-3 mx-3" style="width: 18rem">
+        <div class="card mt-3 mx-3" style="height: 36rem; width: 18rem">
           <!-- ko if: Photo -->
           <img
             data-bind="if: Photo, attr: {src: Photo}"
-            class="card-img-top rounded mt-2"
+            class="card-img-top rounded mt-2 h-100"
             alt="..."
           />
           <!-- /ko -->
@@ -168,7 +168,7 @@
           <img
             src="https://media.tenor.com/UxJkNAvuriIAAAAC/cr7-cristiano-ronaldo.gif"
             data-bind="ifnot: Photo"
-            class="card-img-top rounded mt-2"
+            class="card-img-top rounded mt-2 h-100"
             alt="..."
           />
           <!-- /ko -->
