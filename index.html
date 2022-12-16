@@ -29,7 +29,7 @@
       }
       .carousel-item {
         z-index: -100;
-        height: 800px;
+        height: 94vh;
         background-position: center center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -49,50 +49,31 @@
     </style>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <nav class="navbar navbar-expand-sm navbar-light fixed-top bg-white bg-opacity-10" id="neubar">
       <div class="container">
         <a class="navbar-brand" href="index.html" tabindex="Olympics"
-          ><img src="images/Olympic_rings.svg" height="24"
+          ><img src="images/Olympic_rings.svg" height="55"
         /></a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+     
+        <div class=" collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav mx-2 mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="athletes.html"
-                ><i class="fa fa-user-o text-warning"></i> Athletes</a
-              >
+              <a class="nav-link  mx-2 active" aria-current="page" href="countries.html">Modalidades</a>
             </li>
+            
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="competitions.html"
-                ><i class="fa fa-trophy"></i> Competitions</a
-              >
+              <a class="nav-link mx-2" href="athletes.html">Países</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="countries.html"
-                ><i class="fa fa-flag-o text-danger"></i> Countries</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="games.html"
-                ><i class="fa fa-map-marker text-success"></i> Games</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="modalities.html"
-                ><i class="fa fa-soccer-ball-o text-primary"></i> Modalities</a
-              >
+            <li class="nav-item ms-2">
+              <!-- FALTA COLOCAR O CODIGO POR TRAS-->
+                  <input class="search_input" type="text" placeholder="Search">
+
             </li>
           </ul>
+          <div class="ms-auto"><a class="nav-link mx-2" href="#">Sobre nós</a></div>
         </div>
       </div>
     </nav>
@@ -101,6 +82,7 @@
       id="myCarousel"
       class="carousel slide carousel-fade mb-5"
       data-bs-ride="carousel"
+      style="position: absolute; top: 0px; left: 0px;"
     >
       <div class="carousel-indicators">
         <button
@@ -131,7 +113,7 @@
         ></button>
       </div>
       <div class="carousel-inner">
-        <div class="carousel-item active">
+        <div class="carousel-item active" id="Slide1">
           <div class="carousel-caption d-none d-md-block">
             <div class="display-1">Beijing 2008</div>
             <p>
@@ -141,7 +123,7 @@
             </p>
           </div>
         </div>
-        <div class="carousel-item">
+        <div class="carousel-item" id="Slide2">
           <div class="carousel-caption d-none d-md-block">
             <div class="display-1">Vancouver 2010</div>
             <p>
@@ -155,7 +137,7 @@
             </p>
           </div>
         </div>
-        <div class="carousel-item">
+        <div class="carousel-item" id="Slide3">
           <div class="carousel-caption d-none d-md-block">
             <div class="display-1">Rio de Janeiro 2016</div>
             <p>
@@ -166,7 +148,7 @@
             </p>
           </div>
         </div>
-        <div class="carousel-item">
+        <div class="carousel-item" id="Slide4">
           <div class="carousel-caption d-none d-md-block">
             <div class="display-1">Tokio 2020</div>
             <p>
@@ -197,6 +179,40 @@
         <span class="visually-hidden">Next</span>
       </button>
     </div>
+    <div style="height: 80vh;"></div> <!-- NAO RETIRAR ESTA DIV FUNCIONA PARA PODER COLOCAR INFORMACAO EM BAIXO DO CAROSEL-->
+    <table>
+      <tr>
+        <th>Nome</th>
+        <th>Peso (kg)</th>
+        <th>Altura (m)</th>
+      </tr>
+      <tr>
+        <td>João</td>
+        <td>80</td>
+        <td>1.75</td>
+      </tr>
+      <tr>
+        <td>Maria</td>
+        <td>65</td>
+        <td>1.65</td>
+      </tr>
+      <tr>
+        <td>Pedro</td>
+        <td>90</td>
+        <td>1.85</td>
+      </tr>
+      <tr>
+        <td>Ana</td>
+        <td>55</td>
+        <td>1.60</td>
+      </tr>
+      <tr>
+        <td>José</td>
+        <td>75</td>
+        <td>1.70</td>
+      </tr>
+    </table>
+     
     <!-- End of Working Area -->
     <nav class="navbar navbar-light bg-light fixed-bottom">
       <div class="container small">
@@ -218,6 +234,7 @@
         </div>
       </div>
     </nav>
+    <!-- NAO COLOCAR AQUI CODIGO!!!-->
     <script src="libs/popper.min.js"></script>
     <script src="libs/bootstrap-5.2.2-dist/js/bootstrap.bundle.js"></script>
     <script src="libs/knockout-3.5.1.js"></script>
