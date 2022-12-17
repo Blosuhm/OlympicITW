@@ -19,8 +19,11 @@
       href="libs/font-awesome-4.7.0/css/font-awesome.min.css"
     />
     <link rel="stylesheet" href="style.css" />
+    <link type="text/css" href="libs/jquery-ui/jquery-ui.min.css" rel="stylesheet" />   
     <script src="libs/jquery/jquery-3.6.1.js"></script>
     <script src="libs/knockout-3.5.1.js"></script>
+    <script src="libs/jquery-ui/jquery-ui.min.js"></script>
+    
     <title>Template</title>
     <style>
       .carousel {
@@ -69,11 +72,11 @@
             </li>
             <li class="nav-item ms-2">
               <!-- FALTA COLOCAR O CODIGO POR TRAS-->
-                  <input class="search_input" type="text" placeholder="Search">
+                  <input class="search_input" type="text" placeholder="Search" id="searchBar" data-bind="value: texto, valueUpdate: 'keyup'">
 
             </li>
           </ul>
-          <div class="ms-auto"><a class="nav-link mx-2" href="#">Sobre nós</a></div>
+          <div class="ms-auto"><a class="nav-link mx-2" href="http://192.168.160.58/Olympics">Sobre nós</a></div>
         </div>
       </div>
     </nav>
@@ -180,38 +183,6 @@
       </button>
     </div>
     <div style="height: 80vh;"></div> <!-- NAO RETIRAR ESTA DIV FUNCIONA PARA PODER COLOCAR INFORMACAO EM BAIXO DO CAROSEL-->
-    <table>
-      <tr>
-        <th>Nome</th>
-        <th>Peso (kg)</th>
-        <th>Altura (m)</th>
-      </tr>
-      <tr>
-        <td>João</td>
-        <td>80</td>
-        <td>1.75</td>
-      </tr>
-      <tr>
-        <td>Maria</td>
-        <td>65</td>
-        <td>1.65</td>
-      </tr>
-      <tr>
-        <td>Pedro</td>
-        <td>90</td>
-        <td>1.85</td>
-      </tr>
-      <tr>
-        <td>Ana</td>
-        <td>55</td>
-        <td>1.60</td>
-      </tr>
-      <tr>
-        <td>José</td>
-        <td>75</td>
-        <td>1.70</td>
-      </tr>
-    </table>
      
     <!-- End of Working Area -->
     <nav class="navbar navbar-light bg-light fixed-bottom">
@@ -237,7 +208,6 @@
     <!-- NAO COLOCAR AQUI CODIGO!!!-->
     <script src="libs/popper.min.js"></script>
     <script src="libs/bootstrap-5.2.2-dist/js/bootstrap.bundle.js"></script>
-    <script src="libs/knockout-3.5.1.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
