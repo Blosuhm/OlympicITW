@@ -13,30 +13,6 @@ $('#myCarousel').on('slide.bs.carousel', function(event) {
 
 function ViewModel(){
 
-  this.texto = ko.observable("");
-  this.suggestions = [ "ActionScript",
-  "AppleScript",
-  "Asp",
-  "BASIC",
-  "C",
-  "C++",
-  "Clojure",
-  "COBOL",
-  "ColdFusion",
-  "Erlang",
-  "Fortran",
-  "Groovy",
-  "Haskell",
-  "Java",
-  "JavaScript",
-  "Lisp",
-  "Perl",
-  "PHP",
-  "Python",
-  "Ruby",
-  "Scala",
-  "Scheme"
-];
 }
 
 $("document").ready(function () {
