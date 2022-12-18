@@ -4,14 +4,14 @@ body {
 }
 
 .fixed-top {
-  z-index:500 !important;
+  z-index: 500 !important;
 }
 
 .ui-autocomplete {
   max-height: 200px;
-  overflow-y: auto;   /* prevent horizontal scrollbar */
+  overflow-y: auto; /* prevent horizontal scrollbar */
   overflow-x: hidden; /* add padding to account for vertical scrollbar */
-  z-index:1000 !important;
+  z-index: 1000 !important;
 }
 
 /* button default
@@ -88,12 +88,4 @@ li.page-item a {
 #my-cards img {
   object-position: top;
   object-fit: cover;
-}
-
-.modal-dialog {
-  text-align: center;
-}
-.modal-content,
-.modal-body {
-  display: inline-block;
 }
