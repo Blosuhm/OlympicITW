@@ -3,6 +3,17 @@ body {
   margin: 60px 0 60px 0;
 }
 
+.fixed-top {
+  z-index:500 !important;
+}
+
+.ui-autocomplete {
+  max-height: 200px;
+  overflow-y: auto;   /* prevent horizontal scrollbar */
+  overflow-x: hidden; /* add padding to account for vertical scrollbar */
+  z-index:1000 !important;
+}
+
 /* button default
 ---------------------------- */
 .btn-default {
