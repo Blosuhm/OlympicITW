@@ -10,7 +10,11 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
     />
-    <link type="text/css" href="libs/jquery-ui/jquery-ui.min.css" rel="stylesheet" />   
+    <link
+      type="text/css"
+      href="libs/jquery-ui/jquery-ui.min.css"
+      rel="stylesheet"
+    />
     <script src="libs/jquery/jquery-3.6.1.js"></script>
     <link
       rel="stylesheet"
@@ -21,11 +25,11 @@
       href="libs/font-awesome-4.7.0/css/font-awesome.min.css"
     />
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="cube.css">
-    
+    <link rel="stylesheet" href="cube.css" />
+
     <script src="libs/knockout-3.5.1.js"></script>
     <script src="libs/jquery-ui/jquery-ui.min.js"></script>
-    
+
     <title>Template</title>
     <style>
       .carousel {
@@ -52,40 +56,60 @@
         position: relative !important;
       }
 
-      .tabsCarousel{
-      background-color: transparent !important;
-      position: absolute;
-      top: 63vh;
-      left: 0;
-      right: 0;
-      z-index: 10000 !important;
-      font-size: 20px;
-    }
+      .tabsCarousel {
+        background-color: transparent !important;
+        position: absolute;
+        top: 63vh;
+        left: 0;
+        right: 0;
+        z-index: 10000 !important;
+        font-size: 20px;
+      }
     </style>
   </head>
   <body>
-    
     <nav class="navbar navbar-expand-sm navbar-light fixed-top" id="neubar">
       <div class="container">
         <a class="navbar-brand" href="index.html" tabindex="Olympics"
           ><img src="images/Olympic_Rings.svg" height="55"
         /></a>
-        <button class="navbar-toggler text-bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <button
+          class="navbar-toggler text-bg-light"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
           <span class="navbar-toggler-icon"></span>
         </button>
-     
-        <div class=" collapse navbar-collapse" id="navbarNavDropdown">
+
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link mx-2 active text-white navbarButton text-center" aria-current="page" href="countries.html">Modalidades</a>
-            </li>
-            
-            <li class="nav-item ">
-              <a class="nav-link mx-2  text-white navbarButton text-center" href="athletes.html">Países</a>
+              <a
+                class="nav-link mx-2 active text-white navbarButton text-center"
+                aria-current="page"
+                href="countries.html"
+                >Modalidades</a
+              >
             </li>
 
             <li class="nav-item">
-              <a class="nav-link mx-2 text-white border border-2 rounded-pill navbarButton2 text-center" href="athletes.html">Estatísticas</a>
+              <a
+                class="nav-link mx-2 text-white navbarButton text-center"
+                href="athletes.html"
+                >Países</a
+              >
+            </li>
+
+            <li class="nav-item">
+              <a
+                class="nav-link mx-2 text-white border border-2 rounded-pill navbarButton2 text-center"
+                href="athletes.html"
+                >Estatísticas</a
+              >
             </li>
           </ul>
         </div>
@@ -93,116 +117,110 @@
     </nav>
     <!-- Working Area -->
     <div class="container m-0 p-0" id="workArea">
-    <div
-      id="myCarousel"
-      class="carousel slide carousel-fade mb-5 bg-opacity-10 col-12"
-      data-bs-ride="carousel"
-      style="position: absolute; top: 0px; left: 0px;"
-    >
-      <div class="carousel-indicators d-none">
-        <button
-          type="button"
-          data-bs-target="#myCarousel"
-          data-bs-slide-to="0"
-          aria-label="Slide 1"
-          class="active"
-          aria-current="true"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#myCarousel"
-          data-bs-slide-to="1"
-          aria-label="Slide 2"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#myCarousel"
-          data-bs-slide-to="2"
-          aria-label="Slide 3"
-        ></button>
-      </div>
-      <div class="carousel-inner">
-        <div class="carousel-item active" id="Slide1">
-          <div class="carousel-caption d-none d-md-block">
-            
+      <div
+        id="myCarousel"
+        class="carousel slide carousel-fade mb-5 bg-opacity-10 col-12"
+        data-bs-ride="carousel"
+        style="position: absolute; top: 0px; left: 0px"
+      >
+        <div class="carousel-indicators d-none">
+          <button
+            type="button"
+            data-bs-target="#myCarousel"
+            data-bs-slide-to="0"
+            aria-label="Slide 1"
+            class="active"
+            aria-current="true"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#myCarousel"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#myCarousel"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active" id="Slide1">
+            <div class="carousel-caption d-none d-md-block"></div>
           </div>
+          <div class="carousel-item" id="Slide2"></div>
+          <div class="carousel-item" id="Slide3"></div>
         </div>
-        <div class="carousel-item" id="Slide2">
-          
-        </div>
-        <div class="carousel-item" id="Slide3">
-          
-        </div>
+        <button
+          class="carousel-control-prev e"
+          type="button"
+          data-bs-target="#myCarousel"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#myCarousel"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <div class="tabsCarousel">
+        <ul class="nav justify-content-center">
+          <li class="nav-item mx-5 mt-2 border-light border-4 border-bottom">
+            <a class="nav-link text-light" aria-current="page" href="#"
+              >Curiosidades</a
+            >
+          </li>
+          <li class="nav-item mx-5 mt-2">
+            <a class="nav-link text-light" href="#">Atletas</a>
+          </li>
+          <li class="nav-item mx-5 mt-2">
+            <a class="nav-link text-light" href="#">Competições</a>
+          </li>
+          <li class="nav-item mx-5 mt-2">
+            <a class="nav-link text-light">Jogos</a>
+          </li>
+        </ul>
+      </div>
 
-      </div>
-      <button
-        class="carousel-control-prev e"
-        type="button"
-        data-bs-target="#myCarousel"
-        data-bs-slide="prev"
-      >
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button
-        class="carousel-control-next"
-        type="button"
-        data-bs-target="#myCarousel"
-        data-bs-slide="next"
-      >
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-      
-    </div>
-    <div class="tabsCarousel">
-    <ul class="nav justify-content-center">
-      <li class="nav-item mx-5 mt-2 border-light border-4 border-bottom">
-        <a class="nav-link text-light" aria-current="page" href="#">Curiosidades</a>
-      </li>
-      <li class="nav-item mx-5 mt-2 ">
-        <a class="nav-link  text-light" href="#">Atletas</a>
-      </li>
-      <li class="nav-item mx-5 mt-2">
-        <a class="nav-link  text-light" href="#">Competições</a>
-      </li>
-      <li class="nav-item mx-5 mt-2">
-        <a class="nav-link text-light">Jogos</a>
-      </li>
-    </ul>
-  </div>
-    
-    <div style="height: 62vh;"></div> <!-- NAO RETIRAR ESTA DIV FUNCIONA PARA PODER COLOCAR INFORMACAO EM BAIXO DO CAROSEL-->
-    
-    <div class="cube container mx-5">
-      <div class="row">
-        <div class="col-6">
-          <br>
-          <div class="title">
-            <h1>Modalidades</h1>
-          </div>
-          <div class="slider">
-            <div class="container2">
+      <div style="height: 62vh"></div>
+      <!-- NAO RETIRAR ESTA DIV FUNCIONA PARA PODER COLOCAR INFORMACAO EM BAIXO DO CAROSEL-->
+
+      <div class="cube container mx-5">
+        <div class="row">
+          <div class="col-6">
+            <br />
+            <div class="title">
+              <h1>Modalidades</h1>
+            </div>
+            <div class="slider">
+              <div class="container2">
                 <div class="rotacao x"></div>
                 <div class="rotacao y"></div>
                 <div class="rotacao z"></div>
+              </div>
+              <div class="shadow"></div>
             </div>
-            <div class="shadow"></div>
           </div>
         </div>
       </div>
-  </div>
 
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-
-  </div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+    </div>
     <!-- End of Working Area -->
-    <nav class="navbar navbar-light bg-light fixed-bottom">
+    <footer class="navbar navbar-light bg-light">
       <div class="container small">
         <div class="navbar-text">
           &copy; Introdução as Tecnologias Web - 2022/23
@@ -221,7 +239,7 @@
           </div>
         </div>
       </div>
-    </nav>
+    </footer>
     <!-- NAO COLOCAR AQUI CODIGO!!!-->
     <script src="libs/popper.min.js"></script>
     <script src="libs/bootstrap-5.2.2-dist/js/bootstrap.bundle.js"></script>
