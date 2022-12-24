@@ -15,20 +15,26 @@
       href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
     />
     <link
-      href="libs/bootstrap-5.2.2-dist/css/bootstrap.min.css"
+      href="../../../libs/bootstrap-5.2.2-dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
     <link
-      href="libs/font-awesome-4.7.0/css/font-awesome.min.css"
+      href="../../../libs/font-awesome-4.7.0/css/font-awesome.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../../../style.css" />
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-light fixed-top"
+      aria-label="navigation"
+    >
       <div class="container">
-        <a class="navbar-brand" href="index.html" tabindex="Olympics"
-          ><img src="images/Olympic_rings.svg" height="24"
+        <a class="navbar-brand" href="../../../index.html" tabindex="Olympics"
+          ><img
+            src="../../../images/Olympic_rings.svg"
+            height="24"
+            alt="Olympic Rings"
         /></a>
         <button
           class="navbar-toggler"
@@ -44,7 +50,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="athletes.html"
+              <a
+                class="nav-link"
+                aria-current="page"
+                href="../../athletes/athletes.html"
                 ><i class="fa fa-user-o text-warning"></i> Athletes</a
               >
             </li>
@@ -54,17 +63,26 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="countries.html"
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="../countries.html"
                 ><i class="fa fa-flag-o text-danger"></i> Countries</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="games.html"
+              <a
+                class="nav-link"
+                aria-current="page"
+                href="../../games/games.html"
                 ><i class="fa fa-map-marker text-success"></i> Games</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="modalities.html"
+              <a
+                class="nav-link"
+                aria-current="page"
+                href="../../modalities/modalities.html"
                 ><i class="fa fa-soccer-ball-o text-primary"></i> Modalities</a
               >
             </li>
@@ -96,10 +114,11 @@
       >
         <div class="col-2 mb-2">Flag</div>
         <div class="small col-10">
-          <img class="img-thumbnail" data-bind="attr:{src: Flag}" /><br /><i
-            class="fa fa-link"
-          ></i
-          ><br />
+          <img
+            class="img-thumbnail"
+            data-bind="attr:{src: Flag}"
+            alt="Flag"
+          /><br /><i class="fa fa-link"></i><br />
           [<a
             class="link-dark text-decoration-none"
             data-bind="attr: { href: Flag }, text: Flag"
@@ -109,8 +128,15 @@
         </div>
       </div>
       <div class="row border-bottom mx-0 my-2">
-        <div class="col-12 mb-2">List Events &nbsp;&nbsp;&nbsp;
-          <button type="button" class="btn btn-outline-secondary h-100" id="Events" onclick="showEvents()">  <!--É PARA MUDAR ISTO !!!-->
+        <div class="col-12 mb-2">
+          List Events &nbsp;&nbsp;&nbsp;
+          <button
+            type="button"
+            class="btn btn-outline-secondary h-100"
+            id="Events"
+            onclick="showEvents()"
+          >
+            <!--É PARA MUDAR ISTO !!!-->
             <i class="fa fa-folder" aria-hidden="true"></i> Open
           </button>
         </div>
@@ -124,19 +150,29 @@
             </tr>
           </thead>
           <tbody data-bind="foreach: Events">
-              <th scope="row" data-bind="text: Id"></th>
-              <td data-bind="text: Name"></td>
+            <th scope="row" data-bind="text: Id"></th>
+            <td data-bind="text: Name"></td>
           </tbody>
-        </table> 
+        </table>
       </div>
       <div class="row border-bottom mx-0 my-2">
-        <div class="col-12 mb-2">List Participations &nbsp;&nbsp;&nbsp;
-          <button type="button" class="btn btn-outline-secondary h-100" id="Participations" onclick="showParticipations()">  <!--É PARA MUDAR ISTO !!!-->
+        <div class="col-12 mb-2">
+          List Participations &nbsp;&nbsp;&nbsp;
+          <button
+            type="button"
+            class="btn btn-outline-secondary h-100"
+            id="Participations"
+            onclick="showParticipations()"
+          >
+            <!--É PARA MUDAR ISTO !!!-->
             <i class="fa fa-folder" aria-hidden="true"></i> Open
           </button>
         </div>
       </div>
-      <div class="row border-bottom mx-0 my-2 col-12 d-none" id="list_Participations">
+      <div
+        class="row border-bottom mx-0 my-2 col-12 d-none"
+        id="list_Participations"
+      >
         <table class="table caption-top">
           <thead>
             <tr>
@@ -148,22 +184,32 @@
             </tr>
           </thead>
           <tbody data-bind="foreach: Participant">
-              <th data-bind="text: Id"></th>
-              <td data-bind="text: Name"></td>
-              <td data-bind="text: Year"></td>
-              <td data-bind="text: CityName"></td>
-              <td data-bind="text: CountryName"></td>
+            <th data-bind="text: Id"></th>
+            <td data-bind="text: Name"></td>
+            <td data-bind="text: Year"></td>
+            <td data-bind="text: CityName"></td>
+            <td data-bind="text: CountryName"></td>
           </tbody>
-        </table> 
+        </table>
       </div>
       <div class="row border-bottom mx-0 my-2">
-        <div class="col-12 mb-2">List Organizations &nbsp;&nbsp;&nbsp;
-          <button type="button" class="btn btn-outline-secondary h-100" id="Organizations" onclick="showOrganizations()">  <!--É PARA MUDAR ISTO !!!-->
+        <div class="col-12 mb-2">
+          List Organizations &nbsp;&nbsp;&nbsp;
+          <button
+            type="button"
+            class="btn btn-outline-secondary h-100"
+            id="Organizations"
+            onclick="showOrganizations()"
+          >
+            <!--É PARA MUDAR ISTO !!!-->
             <i class="fa fa-folder" aria-hidden="true"></i> Open
           </button>
         </div>
       </div>
-      <div class="row border-bottom mx-0 my-2 col-12 d-none" id="list_Organizations">
+      <div
+        class="row border-bottom mx-0 my-2 col-12 d-none"
+        id="list_Organizations"
+      >
         <table class="table caption-top">
           <thead>
             <tr>
@@ -175,17 +221,17 @@
             </tr>
           </thead>
           <tbody data-bind="foreach: Organizer">
-              <th data-bind="text: Id"></th>
-              <td data-bind="text: Name"></td>
-              <td data-bind="text: Year"></td>
-              <td data-bind="text: CityName"></td>
-              <td data-bind="text: CountryName"></td>
+            <th data-bind="text: Id"></th>
+            <td data-bind="text: Name"></td>
+            <td data-bind="text: Year"></td>
+            <td data-bind="text: CityName"></td>
+            <td data-bind="text: CountryName"></td>
           </tbody>
-        </table> 
+        </table>
       </div>
-      
+
       <!-- /ko -->
-      <a href="./countries.html" class="btn btn-default btn-sm small"
+      <a href="../countries.html" class="btn btn-default btn-sm small"
         ><i class="fa fa-list"></i> Back to List</a
       >
     </div>
@@ -202,8 +248,12 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">
-              <img src="images/Olympic_rings.svg" height="30" /> Loading
-              data...
+              <img
+                src="../../../images/Olympic_rings.svg"
+                height="30"
+                alt="Olympic Rings"
+              />
+              Loading data...
             </h5>
           </div>
           <div class="modal-body text-center">
@@ -213,7 +263,7 @@
       </div>
     </div>
     <!-- End of Work Area -->
-    <nav class="navbar navbar-light bg-light fixed-bottom">
+    <footer class="navbar navbar-light bg-light fixed-bottom">
       <div class="container small">
         <div class="navbar-text">
           &copy; Introdução as Tecnologias Web - 2022/23
@@ -232,10 +282,10 @@
           </div>
         </div>
       </div>
-    </nav>
-    <script src="libs/bootstrap-5.2.2-dist/js/bootstrap.bundle.min.js"></script>
-    <script src="libs/knockout-3.5.1.js"></script>
-    <script src="libs/jquery/jquery-3.6.1.js"></script>
-    <script src="countrieDetais.js"></script>
+    </footer>
+    <script src="../../../libs/bootstrap-5.2.2-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../libs/knockout-3.5.1.js"></script>
+    <script src="../../../libs/jquery/jquery-3.6.1.js"></script>
+    <script src="countryDetais.js"></script>
   </body>
 </html>
