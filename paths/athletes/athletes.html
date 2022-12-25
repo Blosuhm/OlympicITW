@@ -15,6 +15,11 @@
       href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
     />
     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.css"
+    />
+
+    <link
       href="../../libs/bootstrap-5.2.2-dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
@@ -23,6 +28,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../../style.css" />
+    <link rel="stylesheet" href="swiper.css" />
   </head>
   <body>
     <nav
@@ -164,6 +170,57 @@
       </div>
       <!-- /ko -->
 
+      <div class="swiper-container overflow-hidden">
+        <div class="swiper-wrapper" data-bind="foreach: records">
+          <div class="swiper-slide bg-success d-flex justify-content-center">
+            <div class="card mt-3 mx-3" style="height: 36rem; width: 18rem">
+              <!-- ko if: Photo -->
+              <img
+                data-bind="if: Photo, attr: {src: Photo, 'data-bs-target': '#img' + Id}"
+                class="card-img-top rounded mt-2 h-100"
+                data-bs-toggle="modal"
+                alt="..."
+              />
+
+              <!-- /ko -->
+              <!-- ko ifnot: Photo -->
+              <img
+                src="https://media.tenor.com/UxJkNAvuriIAAAAC/cr7-cristiano-ronaldo.gif"
+                data-bind="ifnot: Photo"
+                class="card-img-top rounded mt-2 h-100"
+                alt="..."
+              />
+              <!-- /ko -->
+
+              <div class="card-body mt-auto flex-grow-0">
+                <h5 class="card-title" data-bind="text:Name"></h5>
+                <div class="row row-cols-2 card-text">
+                  <span class="col">Sex: </span>
+                  <span data-bind="text:Sex"></span>
+                </div>
+                <div class="row row-cols-2 card-text">
+                  <span class="col">Best Position: </span>
+                  <span data-bind="text:BestPosition  "></span>
+                </div>
+                <a
+                  class="btn btn-default btn-light btn-xs"
+                  data-bind="attr: { href:'./athleteDetails.html?id=' + Id }"
+                >
+                  <i class="fa fa-eye" title="Selecione para ver detalhes"></i>
+                </a>
+                <button class="btn btn-default btn-xs">
+                  <i
+                    class="fa fa-heart-o"
+                    data-bind="attr : { 'id': 'favourite_' + Id }"
+                    title="Selecione para adicionar aos favoritos"
+                  ></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div id="my-cards" class="row row-cols-4" data-bind="foreach: records">
         <div class="card mt-3 mx-3" style="height: 36rem; width: 18rem">
           <!-- ko if: Photo -->
@@ -283,6 +340,8 @@
     <script src="../../libs/bootstrap-5.2.2-dist/js/bootstrap.bundle.min.js"></script>
     <script src="../../libs/knockout-3.5.1.js"></script>
     <script src="../../libs/jquery/jquery-3.6.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.js"></script>
+    <script src="swiper.js"></script>
     <script src="athletes.js"></script>
   </body>
 </html>

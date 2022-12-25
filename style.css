@@ -94,6 +94,10 @@ li.page-item a {
   object-position: top;
   object-fit: cover;
 }
+.card-img-top {
+  object-position: top;
+  object-fit: cover;
+}
 
 .modal-dialog {
   text-align: center;
