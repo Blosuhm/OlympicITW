@@ -1,10 +1,9 @@
 ﻿// ViewModel KnockOut
-var vm = function () {
+function vm() {
   console.log("ViewModel initiated...");
   //---Variáveis locais
-  var self = this;
+  let self = this;
   self.baseUri = ko.observable("http://192.168.160.58/Olympics/api/athletes");
-  //self.baseUri = ko.observable('http://localhost:62595/api/drivers');
   self.displayName = "Olympic Athletes List";
   self.error = ko.observable("");
   self.passingMessage = ko.observable("");
@@ -28,22 +27,22 @@ var vm = function () {
   }, self);
   self.totalPages = ko.observable(0);
   self.pageArray = function () {
-    var list = [];
-    var size = Math.min(self.totalPages(), 9);
-    var step;
+    let list = [];
+    let size = Math.min(self.totalPages(), 9);
+    let step;
     if (size < 9 || self.currentPage() === 1) step = 0;
     else if (self.currentPage() >= self.totalPages() - 4)
       step = self.totalPages() - 9;
     else step = Math.max(self.currentPage() - 5, 0);
 
-    for (var i = 1; i <= size; i++) list.push(i + step);
+    for (let i = 1; i <= size; i++) list.push(i + step);
     return list;
   };
 
   //--- Page Events
   self.activate = function (id) {
     console.log("CALL: getGames...");
-    var composedUri =
+    let composedUri =
       self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
     ajaxHelper(composedUri, "GET").done(function (data) {
       console.log(data);
@@ -94,7 +93,7 @@ var vm = function () {
   }
 
   function getUrlParameter(sParam) {
-    var sPageURL = window.location.search.substring(1),
+    let sPageURL = window.location.search.substring(1),
       sURLVariables = sPageURL.split("&"),
       sParameterName,
       i;
@@ -112,14 +111,14 @@ var vm = function () {
 
   //--- start ....
   showLoading();
-  var pg = getUrlParameter("page");
+  let pg = getUrlParameter("page");
   console.log(pg);
   if (pg == undefined) self.activate(1);
   else {
     self.activate(pg);
   }
   console.log("VM initialized!");
-};
+}
 
 $(document).ready(function () {
   console.log("ready!");
