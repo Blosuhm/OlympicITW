@@ -3,7 +3,10 @@ function vm() {
   console.log("ViewModel initiated...");
   //---Variáveis locais
   let self = this;
-  self.baseUri = ko.observable("http://192.168.160.58/Olympics/api/athletes");
+  self.baseUri = ko.observable(
+    "https://private-anon-314f1124c4-olympicsapi.apiary-mock.com/scrape/athletes"
+  );
+  // self.baseUri = ko.observable("http://192.168.160.58/Olympics/api/athletes");
   self.displayName = "Olympic Athletes List";
   self.error = ko.observable("");
   self.passingMessage = ko.observable("");
@@ -41,13 +44,15 @@ function vm() {
 
   //--- Page Events
   self.activate = function (id) {
-    console.log("CALL: getGames...");
+    console.log("CALL: getAthletes...");
     let composedUri =
       self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
     ajaxHelper(composedUri, "GET").done(function (data) {
       console.log(data);
       hideLoading();
-      self.records(data.Records);
+      self.records(
+        data.Records.filter((item) => item.BestPosition < 4 && item.Photo)
+      );
       self.currentPage(data.CurrentPage);
       self.hasNext(data.HasNext);
       self.hasPrevious(data.HasPrevious);
