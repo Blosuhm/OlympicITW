@@ -105,3 +105,19 @@ li.page-item a {
 .square {
   aspect-ratio: 1/1;
 }
+
+/* Photo Shadows */
+
+.shadow-gold {
+  box-shadow: 0 0 10px 5px gold;
+}
+
+.shadow-silver {
+  box-shadow: 0 0 10px 5px silver;
+}
+
+.shadow-bronze {
+  box-shadow: 0 0 10px 5px #cd7f32;
+}
+
+/* End Photo Shadows */

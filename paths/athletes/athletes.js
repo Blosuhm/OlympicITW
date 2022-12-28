@@ -48,11 +48,36 @@ function vm() {
     ajaxHelper(composedUri, "GET").done(function (data) {
       console.log(data);
       hideLoading();
-      self.records(
-        shuffleArray(
-          data.Records.filter((item) => item.BestPosition < 4 && item.Photo)
-        ).slice(0, 10)
-      );
+
+      let athletes = shuffleArray(
+        data.Records.filter((item) => item.BestPosition < 4 && item.Photo)
+      ).slice(0, 12);
+
+      console.log(athletes);
+
+      for (let athlete of athletes) {
+        $.ajax({
+          url:
+            "http://192.168.160.58/Olympics/api/athletes/fulldetails?id=" +
+            athlete.Id,
+          type: "GET",
+          dataType: "json",
+          success: function (data) {
+            console.log(data);
+            let details = {
+              Country: data.BornPlace,
+              Modality: data.Modalities[0].Name,
+              Medals: data.Medals,
+            };
+            athlete.Details = ko.observable(details);
+          },
+        }).then(function () {
+          self.records(athletes);
+        });
+
+        sleep(75);
+      }
+
       console.log(self.records());
       self.currentPage(data.CurrentPage);
       self.hasNext(data.HasNext);
