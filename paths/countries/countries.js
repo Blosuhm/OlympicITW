@@ -61,6 +61,16 @@ var vm = function () {
         });
     };
 
+    self.Flag = function (item) {
+        return "<img src='" + self.records()[item()].Flag + 
+        "'style='height:30px' class='rounded-pill mx-auto' ></img>";
+    };
+
+
+    
+
+
+
     //--- Internal functions
     function ajaxHelper(uri, method, data) {
         self.error(''); // Clear error message
