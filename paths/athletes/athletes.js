@@ -52,14 +52,15 @@ function vm() {
       let athletes = shuffleArray(
         data.Records.filter((item) => item.BestPosition < 4 && item.Photo)
       ).slice(0, 12);
-
+      athletes = $.map(athletes, function (athlete) {
+        return ko.observable(athlete);
+      });
       console.log(athletes);
-
       for (let athlete of athletes) {
         $.ajax({
           url:
             "http://192.168.160.58/Olympics/api/athletes/fulldetails?id=" +
-            athlete.Id,
+            athlete().Id,
           type: "GET",
           dataType: "json",
           success: function (data) {
@@ -69,13 +70,13 @@ function vm() {
               Modality: data.Modalities[0].Name,
               Medals: data.Medals,
             };
-            athlete.Details = ko.observable(details);
+            athlete().Details = details;
           },
         }).then(function () {
           self.records(athletes);
         });
 
-        sleep(75);
+        sleep(100);
       }
 
       console.log(self.records());
