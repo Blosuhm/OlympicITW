@@ -1,44 +1,56 @@
 $().ready(function () {
-  function vm() {
-    const self = this;
-    self.displayName = "Athletes";
-    self.athletes = ko.observableArray([]);
+  let data;
 
+  function getResponseData() {
     $.ajax({
       url: "athletes.json",
       type: "GET",
       dataType: "json",
-      success: function (data) {
-        let athletes = shuffleArray(
-          data.Records.filter((item) => item.BestPosition < 4 && item.Photo)
-        ).slice(0, 12);
+      success: function (response) {
+        data = response;
+        getAthletesDetails(data, function (athletes) {
+          console.log(athletes);
+          console.log("ViewModel is ready");
+          function vm() {
+            const self = this;
+            self.displayName = "Athletes";
+            self.records = ko.observableArray(athletes);
+            console.log(self.records());
+          }
 
-        console.log(athletes);
-
-        for (let athlete of athletes) {
-          $.ajax({
-            url:
-              "http://192.168.160.58/Olympics/api/athletes/fulldetails?id=" +
-              athlete.Id,
-            type: "GET",
-            dataType: "json",
-            success: function (data) {
-              let details = {
-                Country: data.BornPlace,
-                Modality: data.Modalities[0].Name,
-                Medals: data.Medals,
-              };
-              athlete.Details = details;
-            },
-          });
-          self.athletes(athletes);
-          sleep(75);
-        }
+          ko.applyBindings(new vm());
+        });
       },
     });
   }
 
-  ko.applyBindings(new vm());
+  function getAthletesDetails(data, callback) {
+    let athletes = shuffleArray(
+      data.Records.filter((item) => item.BestPosition < 4 && item.Photo)
+    ).slice(0, 12);
+
+    for (let athlete of athletes) {
+      $.ajax({
+        url:
+          "http://192.168.160.58/Olympics/api/athletes/fulldetails?id=" +
+          athlete.Id,
+        type: "GET",
+        dataType: "json",
+        success: function (data) {
+          let details = {
+            Country: data.BornPlace,
+            Modality: data.Modalities[0].Name,
+            Medals: data.Medals,
+          };
+          athlete.Details = ko.observable(details);
+        },
+      });
+      sleep(75);
+    }
+    callback(athletes);
+  }
+
+  getResponseData();
 });
 
 function shuffleArray(arr) {
