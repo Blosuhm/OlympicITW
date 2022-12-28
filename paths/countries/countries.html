@@ -169,6 +169,7 @@
           <tr>
             <th scope="col">Id</th>
             <th scope="col">Name</th>
+            <th scope="col">Flag</th>
             <th scope="col">IOC</th>
             <th scope="col" class="text-right"></th>
           </tr>
@@ -177,6 +178,7 @@
           <tr>
             <td class="align-middle" data-bind="text:Id"></td>
             <td class="align-middle" data-bind="text:Name"></td>
+            <td class="align-middle" data-bind="html: $parent.Flag($index)"></td>
             <td class="align-middle" data-bind="text:IOC"></td>
             <td class="text-end">
               <a
