@@ -172,15 +172,21 @@
 
       <div class="swiper-container overflow-hidden">
         <div class="swiper-wrapper" data-bind="foreach: records">
-          <div class="swiper-slide bg-success d-flex justify-content-center">
-            <div class="card mt-3 mx-3" style="height: 36rem; width: 18rem">
+          <div class="swiper-slide d-flex justify-content-center">
+            <div
+              class="card bg-danger mt-3 mx-3"
+              style="height: 28rem; width: 18rem"
+            >
               <!-- ko if: Photo -->
-              <img
-                data-bind="if: Photo, attr: {src: Photo, 'data-bs-target': '#img' + Id}"
-                class="card-img-top rounded mt-2 h-100"
-                data-bs-toggle="modal"
-                alt="..."
-              />
+              <div class="square w-100 mt-2">
+                <img
+                  data-bind="if: Photo, attr: {src: Photo, 'data-bs-target': '#img' + Id}"
+                  class="rounded-circle h-100 w-100"
+                  style="object-fit: cover; object-position: top"
+                  data-bs-toggle="modal"
+                  alt="..."
+                />
+              </div>
 
               <!-- /ko -->
               <!-- ko ifnot: Photo -->

@@ -3,9 +3,7 @@ function vm() {
   console.log("ViewModel initiated...");
   //---Variáveis locais
   let self = this;
-  self.baseUri = ko.observable(
-    "https://private-anon-314f1124c4-olympicsapi.apiary-mock.com/scrape/athletes"
-  );
+  self.baseUri = ko.observable("athletes.json");
   // self.baseUri = ko.observable("http://192.168.160.58/Olympics/api/athletes");
   self.displayName = "Olympic Athletes List";
   self.error = ko.observable("");
@@ -51,8 +49,11 @@ function vm() {
       console.log(data);
       hideLoading();
       self.records(
-        data.Records.filter((item) => item.BestPosition < 4 && item.Photo)
+        shuffleArray(
+          data.Records.filter((item) => item.BestPosition < 4 && item.Photo)
+        ).slice(0, 10)
       );
+      console.log(self.records());
       self.currentPage(data.CurrentPage);
       self.hasNext(data.HasNext);
       self.hasPrevious(data.HasPrevious);
@@ -78,6 +79,14 @@ function vm() {
         self.error(errorThrown);
       },
     });
+  }
+
+  function shuffleArray(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
   }
 
   function sleep(milliseconds) {

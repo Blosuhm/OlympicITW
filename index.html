@@ -52,11 +52,8 @@
       .carousel-item:nth-child(3) {
         background-image: url("images/Olimp2.svg");
       }
-      .carousel .carousel-item img {
-        position: relative !important;
-      }
 
-      .tabsCarousel {
+      /* .tabsCarousel {
         background-color: transparent !important;
         position: absolute;
         top: 63vh;
@@ -64,11 +61,11 @@
         right: 0;
         z-index: 10000 !important;
         font-size: 20px;
-      }
+      } */
     </style>
   </head>
   <body>
-    <nav class="navbar navbar-expand-sm navbar-light fixed-top" id="neubar">
+    <nav class="navbar navbar-expand-sm fixed-top" id="neubar">
       <div class="container">
         <a class="navbar-brand" href="index.html" tabindex="Olympics"
           ><img src="images/Olympic_Rings.svg" height="55" alt="Olympic Rings"
@@ -115,86 +112,88 @@
         </div>
       </div>
     </nav>
-    <!-- Working Area -->
-    <div class="container m-0 p-0" id="workArea">
-      <div
-        id="myCarousel"
-        class="carousel slide carousel-fade mb-5 bg-opacity-10 col-12"
-        data-bs-ride="carousel"
-        style="position: absolute; top: 0px; left: 0px"
-      >
-        <div class="carousel-indicators d-none">
-          <button
-            type="button"
-            data-bs-target="#myCarousel"
-            data-bs-slide-to="0"
-            aria-label="Slide 1"
-            class="active"
-            aria-current="true"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#myCarousel"
-            data-bs-slide-to="1"
-            aria-label="Slide 2"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#myCarousel"
-            data-bs-slide-to="2"
-            aria-label="Slide 3"
-          ></button>
-        </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active" id="Slide1">
-            <div class="carousel-caption d-none d-md-block"></div>
-          </div>
-          <div class="carousel-item" id="Slide2"></div>
-          <div class="carousel-item" id="Slide3"></div>
-        </div>
+
+    <div
+      id="myCarousel"
+      class="carousel slide carousel-fade mb-5 bg-opacity-10 col-12"
+      data-bs-ride="carousel"
+      style=""
+    >
+      <div class="carousel-indicators d-none">
         <button
-          class="carousel-control-prev e"
           type="button"
           data-bs-target="#myCarousel"
-          data-bs-slide="prev"
-        >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
+          data-bs-slide-to="0"
+          aria-label="Slide 1"
+          class="active"
+          aria-current="true"
+        ></button>
         <button
-          class="carousel-control-next"
           type="button"
           data-bs-target="#myCarousel"
-          data-bs-slide="next"
-        >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
+          data-bs-slide-to="1"
+          aria-label="Slide 2"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#myCarousel"
+          data-bs-slide-to="2"
+          aria-label="Slide 3"
+        ></button>
       </div>
-      <div class="tabsCarousel">
-        <ul class="nav justify-content-center">
-          <li class="nav-item mx-5 mt-2 border-light border-4 border-bottom">
-            <a class="nav-link text-light" aria-current="page" href="#"
-              >Curiosidades</a
-            >
-          </li>
-          <li class="nav-item mx-5 mt-2">
-            <a class="nav-link text-light" href="paths/athletes/athletes.html"
-              >Atletas</a
-            >
-          </li>
-          <li class="nav-item mx-5 mt-2">
-            <a class="nav-link text-light" href="#">Competições</a>
-          </li>
-          <li class="nav-item mx-5 mt-2">
-            <a class="nav-link text-light" href="paths/games/games.html"
-              >Jogos</a
-            >
-          </li>
-        </ul>
+      <div class="carousel-inner">
+        <div class="carousel-item active" id="Slide1"></div>
+        <div class="carousel-item" id="Slide2"></div>
+        <div class="carousel-item" id="Slide3"></div>
+        <div
+          class="tabsCarousel position-absolute bottom-0 w-100"
+          style="z-index: 1000"
+        >
+          <ul class="nav justify-content-center">
+            <li class="nav-item mx-5 mt-2 border-light border-4 border-bottom">
+              <a class="nav-link text-light" aria-current="page" href="#"
+                >Curiosidades</a
+              >
+            </li>
+            <li class="nav-item mx-5 mt-2">
+              <a class="nav-link text-light" href="paths/athletes/athletes.html"
+                >Atletas</a
+              >
+            </li>
+            <li class="nav-item mx-5 mt-2">
+              <a class="nav-link text-light" href="#">Competições</a>
+            </li>
+            <li class="nav-item mx-5 mt-2">
+              <a class="nav-link text-light" href="paths/games/games.html"
+                >Jogos</a
+              >
+            </li>
+          </ul>
+        </div>
       </div>
 
-      <div style="height: 62vh"></div>
+      <button
+        class="carousel-control-prev e"
+        type="button"
+        data-bs-target="#myCarousel"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#myCarousel"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <!-- Working Area -->
+    <main id="workArea">
       <!-- NAO RETIRAR ESTA DIV FUNCIONA PARA PODER COLOCAR INFORMACAO EM BAIXO DO CAROSEL-->
 
       <div class="cube container mx-5">
@@ -222,7 +221,7 @@
       <br />
       <br />
       <br />
-    </div>
+    </main>
     <!-- End of Working Area -->
     <footer class="navbar navbar-light bg-light">
       <div class="container small">

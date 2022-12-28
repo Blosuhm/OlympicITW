@@ -1,11 +1,6 @@
 body {
   font-family: "Open Sans", sans-serif;
-  margin: 60px 0 0px 0;
-
-  width: 100%;
   min-height: 100vh;
-  color: black;
-  font-size: 16px;
 }
 
 .fixed-top {
@@ -105,4 +100,8 @@ li.page-item a {
 .modal-content,
 .modal-body {
   display: inline-block;
+}
+
+.square {
+  aspect-ratio: 1/1;
 }
