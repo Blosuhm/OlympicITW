@@ -11,14 +11,14 @@ $().ready(function () {
         getAthletesDetails(data, function (athletes) {
           console.log(athletes);
           console.log("ViewModel is ready");
-          function vm() {
+          function ViewModel() {
             const self = this;
             self.displayName = "Athletes";
             self.records = ko.observableArray(athletes);
             console.log(self.records());
           }
 
-          ko.applyBindings(new vm());
+          ko.applyBindings(new ViewModel());
         });
       },
     });
