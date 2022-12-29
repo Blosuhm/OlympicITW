@@ -61,15 +61,61 @@ var vm = function () {
         });
     };
 
-    self.Flag = function (item) {
-        return "<img src='" + self.records()[item()].Flag + 
-        "'style='height:30px' class='rounded-pill mx-auto' ></img>";
+    self.ouro = ko.observable({})
+    self.prata = ko.observable({})
+    self.bronze = ko.observable({})
+
+    self.checkOuro = ko.computed(function () {
+        var composedUri = "medalhas.json";
+        ajaxHelper(composedUri, 'GET').done(function (data) {
+            data.map(function (item) { 
+                self.ouro()[item.CountryId] = item.Medals[0].Counter
+            })
+        });
+    });
+
+    self.checkPrata = ko.computed(function () {
+        var composedUri = "medalhas.json";
+        ajaxHelper(composedUri, 'GET').done(function (data) {
+            data.map(function (item) {
+                self.prata()[item.CountryId] = item.Medals[1].Counter
+            })
+        });
+    });
+
+    self.checkBronze = ko.computed(function () {
+        var composedUri = "medalhas.json";
+        ajaxHelper(composedUri, 'GET').done(function (data) {
+            data.map(function (item) {
+                self.bronze()[item.CountryId] = item.Medals[2].Counter
+            })
+        });
+    });
+
+    self.verOuro = function (id) {
+        if(self.ouro()[id] != null)
+            return self.ouro()[id]
+        else
+            return 0
+    };
+
+    self.verPrata = function (id) {
+        if (self.prata()[id] != null)
+            return self.prata()[id]
+        else
+            return 0
+    };
+
+    self.verBronze = function (id) {
+        if (self.bronze()[id] != null)
+            return self.bronze()[id]
+        else
+            return 0
     };
 
 
-    
 
-
+ 
 
     //--- Internal functions
     function ajaxHelper(uri, method, data) {
@@ -135,6 +181,10 @@ var vm = function () {
 $(document).ready(function () {
     console.log("ready!");
     ko.applyBindings(new vm());
+    //on click event
+    
+    
+
 });
 
 $(document).ajaxComplete(function (event, xhr, options) {

@@ -23,6 +23,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../../style.css" />
+    <link rel="stylesheet" href="countrieStyle.css">
   </head>
   <body>
     <nav
@@ -163,8 +164,66 @@
         </div>
       </div>
       <!-- /ko -->
+      
+      <div class="row d-flex justify-content-center position-relative" data-bind="foreach: records">
+        <div class="card shadow col-6 col-sm-6 col-md-4 col-lg-3 m-3 p-0  text-center position-relative">
+          <div class="card-body">
+            <div class="">
+              <a
+              class="shadow fav btn m-0 p-1 rounded-circle text-white position-absolute"
+              data-bind="text: $parent.verOuro(Id)"
+              title="Medalhas de ouro"
+              style="top: 0.6rem; left: 10%; background-color: #f3cf03; min-width: 2rem; min-height: 2rem;"
+            ></a>
+            
+            <a
+              class=" shadow fav btn m-0 p-1 rounded-circle  text-white position-absolute"
+              data-bind="text: $parent.verPrata(Id)"
+              title="Medalhas de prata"
+              style=" top: 0.6rem; left: 30%; background-color: #7a8386; min-width: 2rem; min-height: 2rem;"
+            ></a>
+            <a
+              class=" shadow fav btn m-0 p-1 rounded-circle text-white position-absolute"
+              data-bind="text: $parent.verBronze(Id)"
+              title="Medalhas de bronze"
+              style=" top: 0.6rem; left: 50%; background-color: #cd7f32; min-width: 2rem; min-height: 2rem;"
+            ></a>
+            </div>
+            
+            <div class="p-3 mt-4">
+              <div class="shadow d-flex h-25 justify-content-center">
+                <img
+                  class="countrie w-100 img-fluid"
+                  data-bind="attr: { src: Flag, alt: Name }"
+                  style="height: 8rem;width: 10rem;"
+                >
+                <!-- Esta no countries.js a config do .fav -->
+                <a
+                  class="shadow fav btn m-0 fa fa-heart-o fa-heart rounded-pill p-3 bg-white position-absolute"
+                  data-bind="attr : { 'id': 'favourite_' + Id }"
+                  onclick="$(this).toggleClass('fa-heart-o text-danger');"
+                  title="Selecione para adicionar aos favoritos"
+                  style="top: 10.5rem;"
+                ></a>
+    
+              </div>
+              
+              <br>
+            </div>
+            <h5 class="text-center my-3" style="font-size:1.7rem ;" data-bind="text: Name, css: { Ouro: $parent.verOuro(Id) > 0, Prata: $parent.verPrata(Id) > 0 && $parent.verOuro(Id) == 0, Bronze: $parent.verBronze(Id) > 0 && $parent.verPrata(Id) == 0}"></h5>
+            <a class="btn btn-outline-primary" data-bind="attr: { href:'./countryDetails/countryDetails.html?id=' + Id }">Ver mais</a>
+          </div>
+        </div>
+      </div>
+      
+      
+        
 
-      <table class="table table-striped table-sm small">
+      
+
+
+
+      <!-- <table class="table table-striped table-sm small">
         <thead class="bg-dark text-light">
           <tr>
             <th scope="col">Id</th>
@@ -197,7 +256,7 @@
             </td>
           </tr>
         </tbody>
-      </table>
+      </table> -->
     </div>
     <!-- Modal -->
     <div
@@ -227,26 +286,6 @@
       </div>
     </div>
     <!-- End of Working Area -->
-    <footer class="navbar navbar-light bg-light fixed-bottom">
-      <div class="container small">
-        <div class="navbar-text">
-          &copy; Introdução as Tecnologias Web - 2022/23
-        </div>
-        <div class="navbar-text">
-          Made with <i class="fa fa-heart-o text-danger"></i> for U by
-          <a href="mailto:jsp@ua.pt" class="text-decoration-none text-muted"
-            >jsp@ua.pt</a
-          >.
-        </div>
-        <div class="navbar-nav">
-          <div class="nav-item text-end">
-            <a href="https://www.ua.pt" class="nav-link"
-              >Universidade de Aveiro</a
-            >
-          </div>
-        </div>
-      </div>
-    </footer>
     <script src="../../libs/bootstrap-5.2.2-dist/js/bootstrap.bundle.min.js"></script>
     <script src="../../libs/knockout-3.5.1.js"></script>
     <script src="../../libs/jquery/jquery-3.6.1.js"></script>
