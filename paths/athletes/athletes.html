@@ -94,8 +94,8 @@
       </div>
     </nav>
     <!-- Working Area -->
-    <main class="container">
-      <div class="border-bottom py-2 mb-2 mt-5">
+    <main class="container my-5">
+      <div class="border-bottom py-2 mb-2">
         <h2 data-bind="text:displayName"></h2>
       </div>
 
@@ -104,19 +104,31 @@
           <div class="card mt-3 mx-1 shadow border-0">
             <div class="d-flex" data-bind="foreach: Details.Medals">
               <span
-                class="rounded-circle"
-                data-bind=" text: `${MedalName} - ${Counter}`, css: {MedalName: true}}"
+                class="rounded-circle square text-light fw-bold d-flex align-items-center justify-content-center m-2"
+                data-bind=" text: Counter, css: {'gold': MedalName === 'Gold', 'silver': MedalName === 'Silver', 'bronze': MedalName === 'Bronze'}"
+                style="width: 2rem"
               ></span>
             </div>
             <!-- ko if: Photo -->
-            <div class="px-5 py-1">
+            <div class="px-5 py-1 position-relative">
               <img
                 data-bind="if: Photo, attr: {src: Photo, 'data-bs-target': '#img' + Id}"
-                class="rounded-circle w-100 mt-2 square shadow-silver"
+                class="rounded-circle w-100 mt-2 square"
                 style="object-fit: cover; object-position: top"
                 data-bs-toggle="modal"
                 alt="..."
               />
+              <button
+                class="position-absolute shadow bg-white btn square border-0 rounded-circle fs-4"
+                data-bind="click: $parent.addFavorite, attr: {id: 'fav-' + Id}, css: {'text-danger': $parent.isFavorite(Id)}"
+                style="width: 3rem; bottom: 0px; right: 3.5rem"
+              >
+                <i
+                  class="fa"
+                  data-bind="css: {'fa-heart': $parent.isFavorite(Id), 'fa-heart-o': !$parent.isFavorite(Id)}"
+                  aria-hidden="true"
+                ></i>
+              </button>
             </div>
 
             <!-- /ko -->
@@ -130,7 +142,11 @@
             <!-- /ko -->
 
             <div class="card-body mt-auto flex-grow-0">
-              <h5 class="card-title" data-bind="text:Name"></h5>
+              <h5
+                class="card-title mt-3"
+                style="height: 2em"
+                data-bind="text:Name"
+              ></h5>
               <hr />
               <span data-bind="text: Details.Modality"></span>
               <div><span data-bind="html: Details.Country"></span></div>

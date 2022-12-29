@@ -40,6 +40,41 @@ function vm() {
     return list;
   };
 
+  self.SetFavorites = ko.observableArray([]);
+
+  self.isFavorite = function (element) {
+    console.log(self.SetFavorites());
+
+    // If there are no favorites, return false
+    if (!self.SetFavorites()) {
+      return false;
+    }
+
+    // Return true if the element's Id is in the favorites array
+    return self
+      .SetFavorites()
+      .some((item) => Number(item) === Number(element.Id));
+  };
+
+  self.addFavorite = function (element) {
+    // Get the favorites array from local storage
+    let favorites = JSON.parse(localStorage.getItem("favorites"));
+
+    // If there are no favorites, create an empty array
+    if (!favorites) {
+      favorites = [];
+    }
+
+    // Add the element's Id to the favorites array
+    if (favorites.includes(element.Id)) {
+      favorites.push(element.Id);
+
+      // Save the updated favorites array to local storage
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+      self.SetFavorites(favorites);
+    }
+  };
+
   //--- Page Events
   self.activate = function (id) {
     console.log("CALL: getAthletes...");
@@ -48,6 +83,14 @@ function vm() {
     ajaxHelper(composedUri, "GET").done(function (data) {
       console.log(data);
       hideLoading();
+
+      self.currentPage(data.CurrentPage);
+      self.hasNext(data.HasNext);
+      self.hasPrevious(data.HasPrevious);
+      self.pagesize(data.PageSize);
+      self.totalPages(data.TotalPages);
+      self.totalRecords(data.TotalRecords);
+      self.SetFavorites(JSON.parse(localStorage.getItem("favourites")));
 
       let athletes = shuffleArray(
         data.Records.filter(
@@ -67,11 +110,9 @@ function vm() {
         };
         return ko.observable(athlete);
       });
-      console.log(athletes);
       self.records(athletes);
       let counter = 0;
       for (let athlete of self.records()) {
-        console.log(athlete().Details);
         counter++;
         $.ajax({
           url:
@@ -80,7 +121,6 @@ function vm() {
           type: "GET",
           dataType: "json",
           success: function (data) {
-            console.log(data);
             athlete().Details.Country(
               data.BornPlace
                 ? data.BornPlace.split(" ")
@@ -94,19 +134,13 @@ function vm() {
           },
         }).then(function () {
           self.records(athletes);
+          addShadow();
         });
 
         sleep(100);
       }
 
       console.log(self.records());
-      self.currentPage(data.CurrentPage);
-      self.hasNext(data.HasNext);
-      self.hasPrevious(data.HasPrevious);
-      self.pagesize(data.PageSize);
-      self.totalPages(data.TotalPages);
-      self.totalRecords(data.TotalRecords);
-      //self.SetFavourites();
     });
   };
 
@@ -188,3 +222,25 @@ $(document).ready(function () {
 $(document).ajaxComplete(function (event, xhr, options) {
   $("#myModal").modal("hide");
 });
+
+$("body").click(function () {
+  addShadow();
+});
+
+function addShadow() {
+  $(".gold").each(function () {
+    let element = $(this);
+    let uncle = element.parent().siblings().first().children().first();
+    uncle.addClass("shadow-gold");
+  });
+  $(".silver").each(function () {
+    let element = $(this);
+    let uncle = element.parent().siblings().first().children().first();
+    uncle.addClass("shadow-silver");
+  });
+  $(".bronze").each(function () {
+    let element = $(this);
+    let uncle = element.parent().siblings().first().children().first();
+    uncle.addClass("shadow-bronze");
+  });
+}

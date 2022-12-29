@@ -134,16 +134,25 @@ li.page-item a {
 
 /* Photo Shadows */
 
-.shadow-gold {
-  box-shadow: 0 0 10px 5px gold;
+.shadow-bronze {
+  box-shadow: 0 0 50px 5px hsla(30, 61%, 50%, 0.75);
+}
+.bronze {
+  background-color: #cd7f32;
 }
 
 .shadow-silver {
-  box-shadow: 0 0 10px 5px silver;
+  box-shadow: 0 0 50px 5px hsl(0, 0%, 75%, 0.75);
+}
+.silver {
+  background-color: silver;
 }
 
-.shadow-bronze {
-  box-shadow: 0 0 10px 5px #cd7f32;
+.shadow-gold {
+  box-shadow: 0 0 50px 5px hsl(51, 100%, 50%, 0.75);
+}
+.gold {
+  background-color: gold;
 }
 
 /* End Photo Shadows */
