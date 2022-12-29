@@ -94,22 +94,25 @@
       </div>
     </nav>
     <!-- Working Area -->
-    <main class="container mt-5">
-      <div class="border-bottom py-2 mb-2">
+    <main class="container">
+      <div class="border-bottom py-2 mb-2 mt-5">
         <h2 data-bind="text:displayName"></h2>
       </div>
 
       <div id="my-cards" class="row row-cols-4" data-bind="foreach: records">
         <div>
           <div class="card mt-3 mx-1 shadow border-0">
-            <div class="d-flex" data-bind="text: Details">
-              <span class="rounded-circle" data-bind=""></span>
+            <div class="d-flex" data-bind="foreach: Details.Medals">
+              <span
+                class="rounded-circle"
+                data-bind=" text: `${MedalName} - ${Counter}`, css: {MedalName: true}}"
+              ></span>
             </div>
             <!-- ko if: Photo -->
-            <div class="square w-100 mt-2 p-2">
+            <div class="px-5 py-1">
               <img
                 data-bind="if: Photo, attr: {src: Photo, 'data-bs-target': '#img' + Id}"
-                class="rounded-circle h-100 w-100 shadow-silver"
+                class="rounded-circle w-100 mt-2 square shadow-silver"
                 style="object-fit: cover; object-position: top"
                 data-bs-toggle="modal"
                 alt="..."
@@ -128,14 +131,9 @@
 
             <div class="card-body mt-auto flex-grow-0">
               <h5 class="card-title" data-bind="text:Name"></h5>
-              <div class="row row-cols-2 card-text">
-                <span class="col">Sex: </span>
-                <span data-bind="text:Sex"></span>
-              </div>
-              <div class="row row-cols-2 card-text">
-                <span class="col">Best Position: </span>
-                <span data-bind="text:BestPosition  "></span>
-              </div>
+              <hr />
+              <span data-bind="text: Details.Modality"></span>
+              <div><span data-bind="html: Details.Country"></span></div>
             </div>
           </div>
         </div>
@@ -169,7 +167,7 @@
       </div>
     </div>
     <!-- End of Working Area -->
-    <footer class="navbar navbar-light bg-light">
+    <footer class="navbar navbar-dark bg-dark">
       <div class="container small">
         <div class="navbar-text">
           &copy; Introdução as Tecnologias Web - 2022/23

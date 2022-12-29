@@ -1,7 +1,33 @@
+/* CSS Reset */
+
 body {
   font-family: "Open Sans", sans-serif;
   min-height: 100vh;
+  /** Prevents Margin Collapse */
+  padding-top: 1px;
+  margin-top: -1px;
 }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  font: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+img,
+picture,
+svg,
+video {
+  max-width: 100%;
+  display: block;
+}
+
+/* End of CSS Reset */
 
 .fixed-top {
   z-index: 500 !important;

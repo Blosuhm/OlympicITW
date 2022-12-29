@@ -50,13 +50,29 @@ function vm() {
       hideLoading();
 
       let athletes = shuffleArray(
-        data.Records.filter((item) => item.BestPosition < 4 && item.Photo)
+        data.Records.filter(
+          (item) =>
+            item.BestPosition < 4 &&
+            item.Photo &&
+            !item.Photo.includes("th.bing")
+        )
       ).slice(0, 12);
       athletes = $.map(athletes, function (athlete) {
+        const name = athlete.Name.split(" ");
+        athlete.Name = `${name[0]} ${name[name.length - 1].toUpperCase()}`;
+        athlete.Details = {
+          Country: ko.observable(""),
+          Modality: ko.observable(""),
+          Medals: ko.observableArray([]),
+        };
         return ko.observable(athlete);
       });
       console.log(athletes);
-      for (let athlete of athletes) {
+      self.records(athletes);
+      let counter = 0;
+      for (let athlete of self.records()) {
+        console.log(athlete().Details);
+        counter++;
         $.ajax({
           url:
             "http://192.168.160.58/Olympics/api/athletes/fulldetails?id=" +
@@ -65,12 +81,16 @@ function vm() {
           dataType: "json",
           success: function (data) {
             console.log(data);
-            let details = {
-              Country: data.BornPlace,
-              Modality: data.Modalities[0].Name,
-              Medals: data.Medals,
-            };
-            athlete().Details = details;
+            athlete().Details.Country(
+              data.BornPlace
+                ? data.BornPlace.split(" ")
+                    [data.BornPlace.split(" ").length - 1].replaceAll(")", "")
+                    .replaceAll("(", "")
+                    .slice(-3)
+                : "<br>"
+            );
+            athlete().Details.Modality(data.Modalities[0].Name);
+            athlete().Details.Medals(data.Medals);
           },
         }).then(function () {
           self.records(athletes);
