@@ -230,17 +230,38 @@ $("body").click(function () {
 function addShadow() {
   $(".gold").each(function () {
     let element = $(this);
-    let uncle = element.parent().siblings().first().children().first();
+    let uncle = element
+      .parent()
+      .siblings()
+      .first()
+      .children()
+      .first()
+      .children()
+      .first();
     uncle.addClass("shadow-gold");
   });
   $(".silver").each(function () {
     let element = $(this);
-    let uncle = element.parent().siblings().first().children().first();
+    let uncle = element
+      .parent()
+      .siblings()
+      .first()
+      .children()
+      .first()
+      .children()
+      .first();
     uncle.addClass("shadow-silver");
   });
   $(".bronze").each(function () {
     let element = $(this);
-    let uncle = element.parent().siblings().first().children().first();
+    let uncle = element
+      .parent()
+      .siblings()
+      .first()
+      .children()
+      .first()
+      .children()
+      .first();
     uncle.addClass("shadow-bronze");
   });
 }

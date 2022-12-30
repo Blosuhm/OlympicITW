@@ -36,9 +36,9 @@
       aria-label="navigation"
     >
       <div class="container">
-        <a class="navbar-brand" href="../../index.html" tabindex="Olympics"
+        <a class="navbar-brand" href="../../../index.html" tabindex="Olympics"
           ><img
-            src="../../../images/Olympic-Rings.svg"
+            src="../../../images/olympic-rings-colorized.svg"
             alt="Olympic Rings"
             style="height: 1.5rem; object-fit: contain"
         /></a>
@@ -124,7 +124,11 @@
         <div class="col-12 col-md-3 border-start">
           <ul class="list-group list-group-flush">
             <li class="d-flex list-group-item" data-bind="foreach: medals">
-              <span data-bind="text: `${MedalName} - ${Counter}`"></span>
+              <span
+                class="rounded-circle square text-light fw-bold d-flex align-items-center justify-content-center m-2"
+                data-bind=" text: Counter, css: {'gold': MedalName === 'Gold', 'silver': MedalName === 'Silver', 'bronze': MedalName === 'Bronze'}"
+                style="width: 2rem"
+              ></span>
             </li>
             <li class="list-group-item" data-bind="text: bornDate"></li>
             <li class="list-group-item"></li>

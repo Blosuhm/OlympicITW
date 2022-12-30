@@ -156,3 +156,12 @@ li.page-item a {
 }
 
 /* End Photo Shadows */
+
+.athlete-card img {
+  transition: all 0.2s ease-in-out;
+}
+
+.athlete-card:hover img {
+  transform: scale(1.1);
+  transition: all 0.2s ease-in-out;
+}

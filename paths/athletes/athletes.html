@@ -31,14 +31,81 @@
     <link rel="stylesheet" href="../../style.css" />
   </head>
   <body>
-    <nav
+    <header class="position-relative">
+      <nav
+        class="top-0 navbar py-0 navbar-expand-xl bg-white border-bottom fixed-top"
+        aria-label="Primary Navigation"
+        style="min-height: 6rem"
+      >
+        <div class="position-absolute start-0 h-100">
+          <a href="../../index.htxml" class="navbar-brand d-block h-100">
+            <img
+              src="../../images/olympic-rings-colorized.svg"
+              alt="Olympic Rings"
+              class="h-100"
+              style="object-fit: contain; max-width: 10rem"
+          /></a>
+        </div>
+
+        <button
+          class="navbar-toggler ms-auto me-3"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navbarSupportedContent" class="navbar-collapse collapse">
+          <ul
+            class="navbar-nav nav gap-3 justify-content-center align-items-center w-100"
+            style="font-size: 1.5rem"
+          >
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="athletes.html"
+                ><i class="fa fa-user-o text-warning"></i> Athletes</a
+              >
+            </li>
+
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                aria-current="page"
+                href="../countries/countries.html"
+                ><i class="fa fa-flag-o text-danger"></i> Countries</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="../games/games.html"
+                ><i class="fa fa-map-marker text-success"></i> Games</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                aria-current="page"
+                href="../modalities/modalities.html"
+                ><i class="fa fa-soccer-ball-o text-primary"></i> Modalities</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!-- <nav
       class="navbar navbar-expand-lg navbar-light bg-light fixed-top"
       aria-label="navigation"
     >
       <div class="container">
-        <a class="navbar-brand" href="../../../index.html" tabindex="Olympics"
+        <a class="navbar-brand" href="../../index.html" tabindex="Olympics"
           ><img
-            src="../../../images/Olympic_rings.svg"
+            src="../../images/olympic-rings-colorized.svg"
             alt="Olympic Rings"
             style="height: 1.5rem; object-fit: contain"
         /></a>
@@ -92,16 +159,20 @@
           </ul>
         </div>
       </div>
-    </nav>
+    </nav> -->
     <!-- Working Area -->
-    <main class="container my-5">
+    <main class="container" style="margin-top: 7rem; margin-bottom: 2rem">
       <div class="border-bottom py-2 mb-2">
         <h2 data-bind="text:displayName"></h2>
       </div>
 
-      <div id="my-cards" class="row row-cols-4" data-bind="foreach: records">
+      <div
+        id="my-cards"
+        class="row row-cols-1 row-cols-sm-2 row-cols-xl-4"
+        data-bind="foreach: records"
+      >
         <div>
-          <div class="card mt-3 mx-1 shadow border-0">
+          <div class="card mt-3 mx-1 shadow border-0 athlete-card">
             <div class="d-flex" data-bind="foreach: Details.Medals">
               <span
                 class="rounded-circle square text-light fw-bold d-flex align-items-center justify-content-center m-2"
@@ -109,15 +180,17 @@
                 style="width: 2rem"
               ></span>
             </div>
-            <!-- ko if: Photo -->
             <div class="px-5 py-1 position-relative">
-              <img
-                data-bind="if: Photo, attr: {src: Photo, 'data-bs-target': '#img' + Id}"
-                class="rounded-circle w-100 mt-2 square"
-                style="object-fit: cover; object-position: top"
-                data-bs-toggle="modal"
-                alt="..."
-              />
+              <a
+                class="mt-2"
+                data-bind="attr: {href: `athleteDetails/athleteDetails.html?id=${Id}`}"
+                ><img
+                  class="w-100 square rounded-circle"
+                  data-bind="attr: {src: Photo}"
+                  style="object-fit: cover; object-position: top"
+                  alt="..."
+              /></a>
+
               <button
                 class="position-absolute shadow bg-white btn square border-0 rounded-circle fs-4"
                 data-bind="click: $parent.addFavorite, attr: {id: 'fav-' + Id}, css: {'text-danger': $parent.isFavorite(Id)}"
@@ -130,17 +203,6 @@
                 ></i>
               </button>
             </div>
-
-            <!-- /ko -->
-            <!-- ko ifnot: Photo -->
-            <img
-              src="https://media.tenor.com/UxJkNAvuriIAAAAC/cr7-cristiano-ronaldo.gif"
-              data-bind="ifnot: Photo"
-              class="card-img-top rounded mt-2 h-100"
-              alt="..."
-            />
-            <!-- /ko -->
-
             <div class="card-body mt-auto flex-grow-0">
               <h5
                 class="card-title mt-3"
