@@ -13,6 +13,7 @@ function ViewModel() {
   self.deathDate = ko.observable("");
   self.games = ko.observableArray([]);
   self.modalities = ko.observableArray([]);
+  self.modality = ko.observable("");
   self.competitions = ko.observableArray([]);
   self.photo = ko.observable("");
   self.sex = ko.observable("");
@@ -35,8 +36,11 @@ function ViewModel() {
       self.deathDate(data.DeathDate ? data.DeathDate.slice(0, 4) : "No Data");
       self.games(data.Games);
       self.modalities(data.Modalities);
+      self.modality(data.Modalities[0].Name);
       self.competitions(data.Competitions);
       self.photo(data.Photo);
+      self.height(data.Height);
+      self.weight(data.Weight);
     });
   };
 

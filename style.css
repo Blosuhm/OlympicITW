@@ -165,3 +165,9 @@ li.page-item a {
   transform: scale(1.1);
   transition: all 0.2s ease-in-out;
 }
+
+.text-athlete-header {
+  font-size: clamp(1.5rem, 3vw, 4rem);
+  font-weight: 900;
+  font-family: "roboto condensed", sans-serif;
+}
