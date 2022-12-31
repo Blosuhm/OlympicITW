@@ -109,9 +109,17 @@
               data-bind="text: name"
             ></h1>
             <div class="row">
-              <div>
-                <span>Modalities: </span
-                ><span data-bind="text: modality"></span>
+              <div class="d-flex align-items-center">
+                <img
+                  class="square border border-"
+                  data-bind="attr: {src: modalityLogo, alt: `${modality()}-logo`}"
+                  alt=""
+                  style="max-height: 5rem"
+                />
+                <span
+                  class="ms-3 fs-5 fw-bold"
+                  data-bind="text: modality"
+                ></span>
               </div>
             </div>
           </div>
@@ -169,10 +177,10 @@
         </div>
       </div>
       <hr class="m-0" />
-      <div>
+      <div class="mb-3">
         <h1 class="fw-bold text-muted text-center my-1">GAMES</h1>
         <ul class="list-group rounded-0 border-top" data-bind="foreach: games">
-          <li class="list-group-item p-0 mb-1 border-0">
+          <li class="list-group-item p-0 border-0">
             <div
               class="d-flex align-items-center justify-content-around w-100 border-bottom"
             >
@@ -208,6 +216,27 @@
           </li>
         </ul>
       </div>
+      <hr class="m-0" />
+      <div>
+        <h1 class="text-muted fw-bold text-center my-1">COMPETITIONS</h1>
+        <ul
+          class="list-group rounded-0 d-flex flex-column align-items-center p-0 border-0 gap-3"
+          data-bind="foreach: competitions"
+        >
+          <li class="list-group-item col-6 p-0 rounded-0 border">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item d-flex">
+                <span class="text-muted">Modality:</span
+                ><span class="ms-auto" data-bind="text:Modality"></span>
+              </li>
+              <li class="list-group-item d-flex bg-light">
+                <span class="text-muted">Name:</span
+                ><span class="ms-auto" data-bind="text: Name"></span>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </main>
     <!-- Modal -->
     <div
@@ -237,25 +266,52 @@
       </div>
     </div>
     <!-- End of Working Area -->
-    <footer class="navbar navbar-dark bg-dark">
-      <div class="container small">
-        <div class="navbar-text">
-          &copy; Introdução as Tecnologias Web - 2022/23
-        </div>
-        <div class="navbar-text">
-          Made with <i class="fa fa-meh-o text-danger" aria-hidden="true"></i>
-          for U by
-          <a href="mailto:jsp@ua.pt" class="text-decoration-none text-muted"
-            >jsp@ua.pt</a
-          >.
-        </div>
-        <div class="navbar-nav">
-          <div class="nav-item text-end">
-            <a href="https://www.ua.pt" class="nav-link"
-              >Universidade de Aveiro</a
+
+    <footer class="bg-dark text-white d-flex justify-content-between">
+      <div
+        class="d-flex flex-column align-items-center"
+        style="width: fit-content"
+      >
+        <img
+          class="p-3"
+          src="../../../images/olympic-rings.svg"
+          alt="OLympic Rings"
+          style="height: 4.5rem"
+        />
+        <div
+          class="contact p-3 gap-2 small d-flex flex-column align-items-center"
+          style="width: fit-content"
+        >
+          <label class="d-block" for="contact" style="user-select: none"
+            >Contacts</label
+          >
+          <span class="d-block text-muted"
+            ><a
+              class="text-decoration-none"
+              href="mailto:zakhar.kruptsala@ua.pt"
+              >zakhar.kruptsala@ua.pt</a
             >
-          </div>
+            or
+            <a class="text-decoration-none" href="mailto:pmap@ua.pt"
+              >pmap@ua.pt</a
+            ></span
+          >
+          <a href="#"
+            ><button class="btn btn-success btn-sm" id="contact">
+              Contact Us
+            </button></a
+          >
         </div>
+      </div>
+      <div class="align-text-bottom">
+        <a href="https://www.ua.pt" class="nav-link"
+          >&copy; Introdução as Tecnologias Web - 2022/23</a
+        >
+      </div>
+      <div class="align-text-center">
+        Made with &nbsp;
+        <i class="fa fa-heart text-danger fs-4" aria-hidden="true"></i>&nbsp;
+        SIKE AHAHAHHAHAHAHAH
       </div>
     </footer>
     <script src="../../../libs/bootstrap-5.2.2-dist/js/bootstrap.bundle.min.js"></script>
