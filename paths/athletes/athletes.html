@@ -31,24 +31,19 @@
     <link rel="stylesheet" href="../../style.css" />
   </head>
   <body>
-    <header class="position-relative">
+    <header class="position-sticky top-0" style="z-index: 1000">
       <nav
-        class="top-0 navbar py-0 navbar-expand-xl bg-white border-bottom fixed-top"
+        class="navbar navbar-expand-lg bg-white border-bottom"
         aria-label="Primary Navigation"
-        style="min-height: 6rem"
       >
-        <div class="position-absolute start-0 h-100">
-          <a href="../../index.htxml" class="navbar-brand d-block h-100">
-            <img
-              src="../../images/olympic-rings-colorized.svg"
-              alt="Olympic Rings"
-              class="h-100"
-              style="object-fit: contain; max-width: 10rem"
-          /></a>
-        </div>
-
+        <a class="navbar-brand font-bold ms-5" href="../../index.html"
+          ><img
+            src="../../images/olympic-rings-colorized.svg"
+            alt="Olympic Rings"
+            style="object-fit: contai; max-height: 3.5rem"
+        /></a>
         <button
-          class="navbar-toggler ms-auto me-3"
+          class="navbar-toggler me-5"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarSupportedContent"
@@ -58,11 +53,8 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div id="navbarSupportedContent" class="navbar-collapse collapse">
-          <ul
-            class="navbar-nav nav gap-3 justify-content-center align-items-center w-100"
-            style="font-size: 1.5rem"
-          >
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav gap-3 ms-auto me-5 fs-5 align-items-end">
             <li class="nav-item">
               <a
                 class="nav-link active"
@@ -71,7 +63,6 @@
                 ><i class="fa fa-user-o text-warning"></i> Athletes</a
               >
             </li>
-
             <li class="nav-item">
               <a
                 class="nav-link"
@@ -98,14 +89,14 @@
       </nav>
     </header>
     <!-- Working Area -->
-    <main class="container" style="margin-top: 7rem; margin-bottom: 2rem">
-      <div class="border-bottom py-2 mb-2">
+    <main class="container mt-3 mb-5">
+      <div class="border-bottom pb-3 mb-3">
         <h2 data-bind="text:displayName"></h2>
       </div>
 
       <div
         id="my-cards"
-        class="row row-cols-1 row-cols-sm-2 row-cols-xl-4"
+        class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4"
         data-bind="foreach: records"
       >
         <div>
