@@ -3,6 +3,9 @@ function ViewModel() {
   //* KnockoutJS Variables
   const self = this;
   self.baseUri = ko.observable("http://192.168.160.58/Olympics/api/athletes/");
+  self.baseUriModality = ko.observable(
+    "http://192.168.160.58/Olympics/api/modalities/searchbyname?q="
+  );
   self.error = ko.observable("");
   self.id = ko.observable("");
   self.name = ko.observable("");
@@ -13,6 +16,8 @@ function ViewModel() {
   self.deathDate = ko.observable("");
   self.games = ko.observableArray([]);
   self.modalities = ko.observableArray([]);
+  self.modality = ko.observable("");
+  self.modalityLogo = ko.observable("");
   self.competitions = ko.observableArray([]);
   self.photo = ko.observable("");
   self.sex = ko.observable("");
@@ -35,8 +40,17 @@ function ViewModel() {
       self.deathDate(data.DeathDate ? data.DeathDate.slice(0, 4) : "No Data");
       self.games(data.Games);
       self.modalities(data.Modalities);
+      self.modality(data.Modalities[0].Name);
+      ajaxHelper(
+        `${self.baseUriModality()}${data.Modalities[0].Name}`,
+        "GET"
+      ).done(function (data) {
+        self.modalityLogo(data[0].Photo);
+      });
       self.competitions(data.Competitions);
       self.photo(data.Photo);
+      self.height(data.Height);
+      self.weight(data.Weight);
     });
   };
 

@@ -19,6 +19,10 @@ body {
   padding: 0;
 }
 
+a {
+  color: inherit;
+}
+
 img,
 picture,
 svg,
@@ -164,4 +168,20 @@ li.page-item a {
 .athlete-card:hover img {
   transform: scale(1.1);
   transition: all 0.2s ease-in-out;
+}
+
+.text-athlete-header {
+  font-size: clamp(1.5rem, 3vw, 4rem);
+  font-weight: 900;
+  font-family: "roboto condensed", sans-serif;
+}
+
+.align-text-bottom {
+  display: flex;
+  align-items: flex-end;
+}
+
+.align-text-center {
+  display: flex;
+  align-items: center;
 }
