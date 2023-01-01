@@ -116,12 +116,12 @@
                   class="w-100 square rounded-circle"
                   data-bind="attr: {src: Photo}"
                   style="object-fit: cover; object-position: top"
-                  alt="..."
+                  alt=""
               /></a>
 
               <button
                 class="position-absolute shadow bg-white btn square border-0 rounded-circle fs-4"
-                data-bind="click: $parent.addFavorite, attr: {id: 'fav-' + Id}, css: {'text-danger': $parent.isFavorite(Id)}"
+                data-bind="click: function() {$parent.toggleFavorite(Id)} , attr: {id: 'fav-' + Id}, css: {'text-danger': $parent.isFavorite(Id)}"
                 style="width: 3rem; bottom: 0px; right: 3.5rem"
               >
                 <i

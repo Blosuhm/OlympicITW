@@ -11,34 +11,23 @@ function ViewModel() {
   self.athletes = ko.observableArray([]);
   self.records = ko.observableArray([]);
   self.currentSlice = ko.observable(0);
-  self.SetFavorites = ko.observableArray([]);
-  self.isFavorite = function (element) {
-    console.log(self.SetFavorites());
 
-    // If there are no favorites, return false
-    if (!self.SetFavorites()) {
-      return false;
-    }
-
-    // Return true if the element's Id is in the favorites array
-    return self
-      .SetFavorites()
-      .some((item) => Number(item) === Number(element.Id));
+  self.loadFavorites = ko.observableArray(
+    JSON.parse(localStorage.getItem("athletes"))
+      ? JSON.parse(localStorage.getItem("athletes"))
+      : []
+  );
+  self.isFavorite = function (id) {
+    return self.loadFavorites().includes(id);
   };
-  self.addFavorite = function (element) {
-    // Get the favorites array from local storage
-    let favorites = JSON.parse(localStorage.getItem("favorites"));
-    // If there are no favorites, create an empty array
-    if (!favorites) {
-      favorites = [];
+  self.toggleFavorite = function (id) {
+    if (self.isFavorite(id)) {
+      self.loadFavorites.remove(id);
+    } else {
+      self.loadFavorites.push(id);
     }
-    // Add the element's Id to the favorites array
-    if (favorites.includes(element.Id)) {
-      favorites.push(element.Id);
-      // Save the updated favorites array to local storage
-      localStorage.setItem("favorites", JSON.stringify(favorites));
-      self.SetFavorites(favorites);
-    }
+    localStorage.setItem("athletes", JSON.stringify(self.loadFavorites()));
+    console.log(localStorage.getItem("athletes"));
   };
 
   self.loadAthletes = function () {
@@ -86,8 +75,6 @@ function ViewModel() {
     console.log(composedUri);
     ajaxHelper(composedUri, "GET").done(function (data) {
       console.log(data);
-
-      self.SetFavorites(JSON.parse(localStorage.getItem("favourites")));
       //* Load Athletes
       self.athletes(
         shuffleArray(
