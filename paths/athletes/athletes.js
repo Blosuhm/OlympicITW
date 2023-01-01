@@ -4,7 +4,6 @@ function ViewModel() {
   //---Variáveis locais
   let self = this;
   self.baseUri = ko.observable("http://192.168.160.58/Olympics/api/athletes");
-  // self.baseUri = ko.observable("http://192.168.160.58/Olympics/api/athletes");
   self.displayName = "Olympic Athletes";
   self.error = ko.observable("");
   self.passingMessage = ko.observable("");
@@ -13,9 +12,7 @@ function ViewModel() {
   self.currentSlice = ko.observable(0);
 
   self.loadFavorites = ko.observableArray(
-    JSON.parse(localStorage.getItem("athletes"))
-      ? JSON.parse(localStorage.getItem("athletes"))
-      : []
+    JSON.parse(localStorage.getItem("athletes")) || []
   );
   self.isFavorite = function (id) {
     return self.loadFavorites().includes(id);
