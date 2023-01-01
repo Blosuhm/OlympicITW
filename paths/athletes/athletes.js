@@ -39,7 +39,13 @@ function ViewModel() {
 
     athletes = $.map(athletes, function (athlete) {
       const name = athlete.Name.split(" ");
-      athlete.Name = `${name[0]} ${name[name.length - 1].toUpperCase()}`;
+      athlete.Name = `${name[0]} ${name[name.length - 1]
+        .toUpperCase()
+        .replaceAll("(", "")
+        .replaceAll(")", "")
+        .split("-")
+        .filter((item) => item.length > 1)
+        .join("-")}`;
       athlete.Details = {
         Country: ko.observable(""),
         Modality: ko.observable(""),
