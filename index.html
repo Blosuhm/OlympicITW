@@ -66,7 +66,7 @@
     </style>
   </head>
   <body>
-    <nav class="navbar navbar-expand-sm fixed-top" id="neubar">
+    <nav class="navbar navbar-expand-sm fixed-top" style="z-index: 5000 !important" id="neubar">
       <div class="container">
         <a class="navbar-brand" href="index.html" tabindex="Olympics"
           ><img src="images/olympic-rings.svg" height="55" alt="Olympic Rings"
@@ -147,23 +147,28 @@
         <div class="carousel-item" id="Slide3"></div>
         <div
           class="tabsCarousel position-absolute bottom-0 w-100"
-          style="z-index: 1000"
+          style="z-index: 10"
         >
           <ul class="nav justify-content-center">
-            <li class="nav-item mx-5 mt-2 border-light border-4 border-bottom">
-              <a class="nav-link text-light" aria-current="page" href="#"
+            <li class="nav-item mx-4 mt-2 border-light border-4 border-bottom">
+              <a type="button" class="nav-link text-light" aria-current="page" id="scroll-button1"
                 >Curiosidades</a
               >
             </li>
-            <li class="nav-item mx-5 mt-2">
+            <li class="nav-item mx-4 mt-2 d-md-block d-none">
               <a class="nav-link text-light" href="paths/athletes/athletes.html"
                 >Atletas</a
               >
             </li>
-            <li class="nav-item mx-5 mt-2">
-              <a class="nav-link text-light" href="#">Competições</a>
+            <li class="nav-item mx-4 mt-2 d-md-none d-block">
+              <a type="button" class="nav-link text-light" id="scroll-button2"
+                >Informação</a
+              >
             </li>
-            <li class="nav-item mx-5 mt-2">
+            <li class="nav-item mx-4 mt-2 d-md-block d-none">
+              <a class="nav-link text-light" href="paths/modalities/modalities.html">Competições</a>
+            </li>
+            <li class="nav-item mx-4 mt-2 d-md-block d-none">
               <a class="nav-link text-light" href="paths/games/games.html"
                 >Jogos</a
               >
@@ -196,7 +201,7 @@
     <main id="workArea">
       <div class="mt-5">&nbsp;</div>
       <!-- NAO RETIRAR ESTA DIV FUNCIONA PARA PODER COLOCAR INFORMACAO EM BAIXO DO CAROSEL-->
-      <h1 class="titulo">Jogos Olímpicos</h1>
+      <h1 class="titulo" id="target-element1">Jogos Olímpicos</h1>
       <hr class="hrSpecial">
       <div class="Scontainer">
           <p>
@@ -213,12 +218,12 @@
         
     
 
-    <div class=" mt-0 me-0 ms-0 w-100 d-flex justify-content-center" style="background-color: #FE5F55 ;width: 100000px;">
+    <div class=" mt-0 me-0 ms-0 w-100 d-flex justify-content-center" id="target-element2" style="background-color: #FE5F55 ;width: 100000px;">
       <div class="my-2">&nbsp;</div>
       <div class="cube container mx-5">
         <div class="row">
-          <div class="col-2"></div>
-          <div class="col-4">
+          <div class="col-2 d-lg-block d-none"></div>
+          <div class="col-lg-4 col-12">
             <br />
             <div class="title">
               <h1></h1>
@@ -232,51 +237,52 @@
               <div class="shadow"></div>
             </div>
           </div>
-          <div class="col-4">
+          <div class="col-lg-4 col-12">
             
-        <div class="text-center mt-5 mb-5">
-          <button class="mt-3 btn btn-outline-light w-100">Ver todos os Atletas</button>
-          <button class="mt-3 btn btn-outline-light w-100">Ver todos os Países</button>
-          <button class="mt-3 btn btn-outline-light w-100">Ver todas Modalidades</button>
-          <button class="mt-3 btn btn-outline-light w-100">Ver todos os Jogos</button>
+            <div class="text-center mt-5 mb-5">
+              <a href="paths/athletes/athletes.html" class="mt-3 btn btn-outline-light w-100">Ver todos os Atletas</a>
+              <a href="paths/countries/countries.html" class="mt-3 btn btn-outline-light w-100">Ver todos os Países</a>
+              <a href="paths/modalities/modalities.html" class="mt-3 btn btn-outline-light w-100">Ver todas as Competições</a>
+              <a href="paths/games/games.html" class="mt-3 btn btn-outline-light w-100">Ver todos os Jogos</a>
 
-        </div>
-        <div class="my-5">&nbsp;</div>
+            </div>
+            <div class="my-5 d-lg-block d-none" id="Novidades">&nbsp;</div>
           </div>
         </div>
       </div>
     </div>
 
-      <div class="container my-5 rounded-4" style="background-color: #FE5F55 ">
+      <div class="container mt-5 rounded-4" style="background-color: #FE5F55 ">
         <div class="row">
           <div class="col-2"></div>
-          <div class="col-4">
+          <div class="col-lg-4 col-8">
             <h1 class="titulo mt-4 text-light">Receba Novidades</h1>
             <div class="text-center mt-5 mb-5">
               
 
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingName" placeholder="Name">
+                <input type="text" class="form-control" id="floatingName" placeholder="Name" data-bind="value: nome, valueUpdate: 'input', class: nomeValido() ? 'is-valid':'is-invalid'">
                 <label for="floatingName">Name</label>
               </div>
               <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingEmail" placeholder="name@example.com">
+                <input type="email" class="form-control" id="floatingEmail" placeholder="name@example.com" data-bind="value: email, valueUpdate: 'input', class: emailValido() ? 'is-valid':'is-invalid'">
                 <label for="floatingEmail">Email</label>
               </div>
               <form class="form-floating mb-3">
-                <input type="tel" class="form-control" id="floatingTelemovel" placeholder="+351">
+                <input type="tel" class="form-control" id="floatingTelemovel" placeholder="+351" data-bind="value: telemovel, valueUpdate: 'input', class: telemovelValido() ? 'is-valid':'is-invalid'">
                 <label for="floatingTelemovel">Telemóvel</label>
               </form>
               
-              <button class="mt-3 btn btn-outline-light w-50">Recebe Novidades</button>
+              <button class="mt-3 btn btn-outline-light w-50" data-bind="enable: activeNovidades, click: clearAll">Receba Novidades</button>
             </div>
           </div>   
 
           <div class="col-5 p-4 rounded-4">
-            <div class="col-4">
+            <div class="col-lg-4 col-9">
               <div class="ms-5 mt-1 rounded-5" id="map" style="position: relative;width: 300%; height: 24rem;"></div>
       
             </div>
+            <div class="my-3 d-lg-none d-block">&nbsp;</div>
           </div>
           </div>
         </div>
@@ -288,53 +294,52 @@
       <br />
       <br />
       <br />
+      <div class="fixed-bottom end-0 d-flex justify-content-end" style="height:6rem;">
+        <img src="images/BackTop.svg" type="button" class="me-5 mb-5 text-" id="BackTop-button" ></img>
+      </div>
     </main>
     <!-- End of Working Area -->
-    <footer class="bg-dark text-white d-flex justify-content-between">
-      <div
-        class="d-flex flex-column align-items-center"
-        style="width: fit-content"
-      >
-        <img
-          class="p-3"
-          src="images/olympic-rings.svg"
-          alt="OLympic Rings"
-          style="height: 4.5rem"
-        />
-        <div
-          class="contact p-3 gap-2 small d-flex flex-column align-items-center"
-          style="width: fit-content"
-        >
-          <label class="d-block" for="contact" style="user-select: none"
-            >Contacts</label
-          >
-          <span class="d-block text-muted"
-            ><a
-              class="text-decoration-none"
-              href="mailto:zakhar.kruptsala@ua.pt"
-              >zakhar.kruptsala@ua.pt</a
-            >
-            or
-            <a class="text-decoration-none" href="mailto:pmap@ua.pt"
-              >pmap@ua.pt</a
-            ></span
-          >
-          <a href="#"
-            ><button class="btn btn-success btn-sm" id="contact">
-              Contact Us
-            </button></a
-          >
+    <footer class="footer-20192">
+      <div class="site-section">
+        <div class="container">
+
+          
+          <div class="row">
+
+            <div class="col-md-3 col-6">
+              <a href="#" class="footer-logo">Projeto Final ITW</a>
+              <p class="copyright">
+                <small>&copy; 2023</small>
+              </p>
+            </div>
+            <div class="col-3 d-md-block d-none">
+              <h3>Sobre o site</h3>
+              <ul class="list-unstyled links">
+                <li><a href="#">Home</a></li>
+                <li><a href="paths/athletes/athletes.html">Atletas</a></li>
+                <li><a href="paths/modalities/modalities.html">Modalidades</a></li>
+                <li><a href="paths/countries/countries.html">Países</a></li>
+                <li><a href="paths/games/games.html">Jogos</a></li>
+                <li><a href="paths/estatistica/estatistica.html">Estatísticas</a></li>
+              </ul>
+            </div>
+            <div class="col-3 d-md-block d-none">
+              <h3>Links importantes</h3>
+              <ul class="list-unstyled links">
+                <li><a href="https://www.ua.pt/">Universidade de Aveiro</a></li>
+                <li><a href="https://www.ua.pt/pt/uc/12289">Introdução às Tecnologias Web </a></li>
+                <li><a href="https://github.com/detiuaveiro">DETI - UA </a></li>
+              </ul>
+            </div>
+            <div class="col-md-3 col-6">
+              <h3>Feito por:</h3>
+              <ul class="list-unstyled links">
+                <li><a href="mailto:pmap@ua.pt">pmap@ua.pt</a>&nbsp;&nbsp;&nbsp;<a class="me-5" href="https://github.com/GH-Pedro"><span class="fa fa-github"></span></a></li>
+                <li><a href="mailto:zakhar.kruptsala@ua.pt">zakhar.kruptsala@ua.pt</a>&nbsp;&nbsp;&nbsp;<a class="me-5" href="https://github.com/Blosuhm"><span class="fa fa-github"></span></a></li>
+              </ul>
+            </div>            
+          </div>
         </div>
-      </div>
-      <div class="align-text-bottom">
-        <a href="https://www.ua.pt" class="nav-link"
-          >&copy; Introdução as Tecnologias Web - 2022/23</a
-        >
-      </div>
-      <div class="align-text-center">
-        Made with &nbsp;
-        <i class="fa fa-heart text-danger fs-4" aria-hidden="true"></i>&nbsp;
-        SIKE AHAHAHHAHAHAHAH
       </div>
     </footer>
     <!-- NAO COLOCAR AQUI CODIGO!!!-->

@@ -146,6 +146,8 @@ function ViewModel() {
 $(document).ready(function () {
   console.log("ready!");
   ko.applyBindings(new ViewModel());
+
+  
 });
 
 $(document).ajaxComplete(function () {
