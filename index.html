@@ -26,7 +26,8 @@
     />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="cube.css" />
-
+    <link rel="stylesheet" href="libs/leaflet/leaflet.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
     <script src="libs/knockout-3.5.1.js"></script>
     <script src="libs/jquery-ui/jquery-ui.min.js"></script>
 
@@ -194,14 +195,34 @@
 
     <!-- Working Area -->
     <main id="workArea">
+      <div class="mt-5">&nbsp;</div>
       <!-- NAO RETIRAR ESTA DIV FUNCIONA PARA PODER COLOCAR INFORMACAO EM BAIXO DO CAROSEL-->
+      <h1 class="titulo">Jogos Olímpicos</h1>
+      <hr class="hrSpecial">
+      <div class="Scontainer">
+          <p>
+            Os Jogos Olímpicos são uma competição esportiva internacional que ocorre a cada quatro anos e reúne atletas de todos os países do mundo. A primeira edição dos Jogos Olímpicos modernos ocorreu em Atenas, Grécia, em 1896. Desde então, eles têm sido realizados de forma intercalada, com as Olimpíadas de Inverno e de Verão acontecendo em anos diferentes.
+          </p>
+          <hr class="hrSpecial">
+          <p>
+            São uma celebração do esporte e da amizade internacional, e têm como objetivo promover a paz e a compreensão entre os povos de todo o mundo. Eles também servem como uma plataforma para atletas de todas as idades e níveis de habilidade competirem em uma ampla variedade de esportes, incluindo atletismo, natação, ginástica, tênis, basquete e muito mais.
+          </p>
+      </div>
 
+      
+
+        
+    
+
+    <div class=" mt-0 me-0 ms-0 w-100 d-flex justify-content-center" style="background-color: #FE5F55 ;width: 100000px;">
+      <div class="my-2">&nbsp;</div>
       <div class="cube container mx-5">
         <div class="row">
-          <div class="col-6">
+          <div class="col-2"></div>
+          <div class="col-4">
             <br />
             <div class="title">
-              <h1>Modalidades</h1>
+              <h1></h1>
             </div>
             <div class="slider">
               <div class="container2">
@@ -212,8 +233,55 @@
               <div class="shadow"></div>
             </div>
           </div>
+          <div class="col-4">
+            
+        <div class="text-center mt-5 mb-5">
+          <button class="mt-3 btn btn-outline-light w-100">Ver todos os Atletas</button>
+          <button class="mt-3 btn btn-outline-light w-100">Ver todos os Países</button>
+          <button class="mt-3 btn btn-outline-light w-100">Ver todas Modalidades</button>
+          <button class="mt-3 btn btn-outline-light w-100">Ver todos os Jogos</button>
+
+        </div>
+        <div class="my-5">&nbsp;</div>
+          </div>
         </div>
       </div>
+    </div>
+
+      <div class="container my-5 rounded-4" style="background-color: #FE5F55 ">
+        <div class="row">
+          <div class="col-2"></div>
+          <div class="col-4">
+            <h1 class="titulo mt-4 text-light">Receba Novidades</h1>
+            <div class="text-center mt-5 mb-5">
+              
+
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingName" placeholder="Name">
+                <label for="floatingName">Name</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="floatingEmail" placeholder="name@example.com">
+                <label for="floatingEmail">Email</label>
+              </div>
+              <form class="form-floating mb-3">
+                <input type="tel" class="form-control" id="floatingTelemovel" placeholder="+351">
+                <label for="floatingTelemovel">Telemóvel</label>
+              </form>
+              
+              <button class="mt-3 btn btn-outline-light w-50">Recebe Novidades</button>
+            </div>
+          </div>   
+
+          <div class="col-5 p-4 rounded-4">
+            <div class="col-4">
+              <div class="ms-5 mt-1 rounded-5" id="map" style="position: relative;width: 300%; height: 24rem;"></div>
+      
+            </div>
+          </div>
+          </div>
+        </div>
+    </div>
 
       <br />
       <br />
@@ -244,6 +312,8 @@
       </div>
     </footer>
     <!-- NAO COLOCAR AQUI CODIGO!!!-->
+    <script src="libs/leaflet/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-routing-machine@latest/dist/leaflet-routing-machine.min.js"></script>
     <script src="libs/popper.min.js"></script>
     <script src="libs/bootstrap-5.2.2-dist/js/bootstrap.bundle.js"></script>
     <script src="script.js"></script>
