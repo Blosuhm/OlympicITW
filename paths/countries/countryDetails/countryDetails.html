@@ -99,15 +99,15 @@
               <div class="p-3">
                 <div class="shadow d-flex h-25 justify-content-center mb-5">
                   <img
-                    class="countrie w-100 img-fluid"
+                    class="country w-100 img-fluid"
                     data-bind="attr: { src: Flag, alt: Name, title: Name() +' - ' + Id() }"
                     style="height: 16rem;width: 20rem;"
+                    alt=""
                   >
                   <!-- Esta no countries.js a config do .fav -->
                   <a
-                    class="shadow fav btn m-0 fa fa-heart-o fa-heart rounded-pill p-3 bg-white position-absolute"
-                    data-bind="attr : { 'id': 'favourite_' + Id }"
-                    onclick="$(this).toggleClass('fa-heart-o text-danger');"
+                    class="shadow fav btn m-0 fa rounded-circle p-3 bg-white position-absolute"
+                    data-bind="click: function() {toggleFavorite(Id())} , attr: {id: 'fav-' + Id()}, css: {'text-danger': isFavorite(Id()), 'fa-heart': isFavorite(Id()), 'fa-heart-o': !isFavorite(Id())}"
                     title="Selecione para adicionar aos favoritos"
                     style="top: 17rem;"
                   ></a>
@@ -126,7 +126,7 @@
             </header>
             <main class="leaderboard__profiles" data-bind="foreach: bestAtletas">
               <article class="leaderboard__profile">
-                <img data-bind="attr:{src: Foto}" class="leaderboard__picture" style="height: 5rem; width: 5rem;">
+                <img data-bind="attr:{src: Foto}" class="leaderboard__picture" style="height: 5rem; width: 5rem;" alt="">
                 <span class="leaderboard__name" data-bind="text: Nome"></span>
                 <span class="leaderboard__value" data-bind="text: Posicao"></span>
               </article>
