@@ -8,8 +8,9 @@ function ViewModel() {
   self.displayName = "Olympic Athletes";
   self.error = ko.observable("");
   self.passingMessage = ko.observable("");
+  self.athletes = ko.observableArray([]);
   self.records = ko.observableArray([]);
-  self.currentPage = ko.observable(1);
+  self.currentSlice = ko.observable(0);
   self.SetFavorites = ko.observableArray([]);
   self.isFavorite = function (element) {
     console.log(self.SetFavorites());
@@ -40,78 +41,65 @@ function ViewModel() {
     }
   };
 
-  //--- Page Events
-  self.activate = function (id) {
+  self.loadAthletes = function () {
+    let athletes = self
+      .athletes()
+      .slice(self.currentSlice(), self.currentSlice() + 12);
+
+    self.currentSlice(self.currentSlice() + 12);
+
+    athletes = $.map(athletes, function (athlete) {
+      const name = athlete.Name.split(" ");
+      athlete.Name = `${name[0]} ${name[name.length - 1].toUpperCase()}`;
+      athlete.Details = {
+        Country: ko.observable(""),
+        Modality: ko.observable(""),
+        Medals: ko.observableArray([]),
+      };
+      return ko.observable(athlete);
+    });
+    for (let athlete of athletes) {
+      let composedUri = `${self.baseUri()}/fulldetails?id=${athlete().Id}`;
+      ajaxHelper(composedUri, "GET")
+        .done(function (data) {
+          athlete().Details.Country(
+            data.BornPlace
+              ? data.BornPlace.split(" ")
+                  [data.BornPlace.split(" ").length - 1].replaceAll(")", "")
+                  .replaceAll("(", "")
+                  .slice(-3)
+              : "<br>"
+          );
+          athlete().Details.Modality(data.Modalities[0].Name);
+          athlete().Details.Medals(data.Medals);
+        })
+        .then(function () {
+          self.records.push(athlete);
+          addShadow();
+        });
+      sleep(100);
+    }
+  };
+  self.activate = function () {
     console.log("CALL: getAthletes...");
-    let composedUri = `${self.baseUri()}/page=1&pageSize=135600`;
+    let composedUri = `${self.baseUri()}?page=1&pageSize=135571`;
+    console.log(composedUri);
     ajaxHelper(composedUri, "GET").done(function (data) {
       console.log(data);
 
       self.SetFavorites(JSON.parse(localStorage.getItem("favourites")));
       //* Load Athletes
-      let athletes = shuffleArray(
-        data.Records.filter(
-          (item) =>
-            item.BestPosition < 4 &&
-            item.Photo &&
-            !item.Photo.includes("th.bing")
+      self.athletes(
+        shuffleArray(
+          data.Records.filter(
+            (item) =>
+              item.BestPosition < 4 &&
+              item.Photo &&
+              !item.Photo.includes("th.bing")
+          )
         )
-      ).slice(0, 12);
-      athletes = $.map(athletes, function (athlete) {
-        const name = athlete.Name.split(" ");
-        athlete.Name = `${name[0]} ${name[name.length - 1].toUpperCase()}`;
-        athlete.Details = {
-          Country: ko.observable(""),
-          Modality: ko.observable(""),
-          Medals: ko.observableArray([]),
-        };
-        return ko.observable(athlete);
-      });
-      self.records(athletes);
-      for (let athlete of self.records()) {
-        composedUri = `${self.baseUri()}/fulldetails?id=${athlete().Id}`;
-        ajaxHelper(composedUri, "GET")
-          .done(function (data) {
-            athlete().Details.Country(
-              data.BornPlace
-                ? data.BornPlace.split(" ")
-                    [data.BornPlace.split(" ").length - 1].replaceAll(")", "")
-                    .replaceAll("(", "")
-                    .slice(-3)
-                : "<br>"
-            );
-            athlete().Details.Modality(data.Modalities[0].Name);
-            athlete().Details.Medals(data.Medals);
-          })
-          .then(function () {
-            self.records(athletes);
-            addShadow();
-          });
-        // $.ajax({
-        //   url:
-        //     "http://192.168.160.58/Olympics/api/athletes/fulldetails?id=" +
-        //     athlete().Id,
-        //   type: "GET",
-        //   dataType: "json",
-        //   success: function (data) {
-        //     athlete().Details.Country(
-        //       data.BornPlace
-        //         ? data.BornPlace.split(" ")
-        //             [data.BornPlace.split(" ").length - 1].replaceAll(")", "")
-        //             .replaceAll("(", "")
-        //             .slice(-3)
-        //         : "<br>"
-        //     );
-        //     athlete().Details.Modality(data.Modalities[0].Name);
-        //     athlete().Details.Medals(data.Medals);
-        //   },
-        // }).then(function () {
-        //   self.records(athletes);
-        //   addShadow();
-        // });
-
-        sleep(100);
-      }
+      );
+      self.loadAthletes(self.currentSlice(), self.athletes());
       hideLoading();
       console.log(self.records());
     });
@@ -159,25 +147,9 @@ function ViewModel() {
     });
   }
 
-  function getUrlParameter(sParam) {
-    let sPageURL = window.location.search.substring(1),
-      sURLVariables = sPageURL.split("&"),
-      sParameterName,
-      i;
-    console.log("sPageURL=", sPageURL);
-    for (i = 0; i < sURLVariables.length; i++) {
-      sParameterName = sURLVariables[i].split("=");
-
-      if (sParameterName[0] === sParam) {
-        return sParameterName[1] === undefined
-          ? true
-          : decodeURIComponent(sParameterName[1]);
-      }
-    }
-  }
-
   //! Start
   showLoading();
+  self.activate();
   console.log("VM initialized!");
 }
 
