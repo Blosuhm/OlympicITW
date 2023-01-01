@@ -89,7 +89,7 @@
       </nav>
     </header>
     <!-- Working Area -->
-    <main class="container mt-3 mb-5">
+    <main class="container my-3">
       <div class="border-bottom pb-3 mb-3">
         <h2 data-bind="text:displayName"></h2>
       </div>
@@ -144,9 +144,14 @@
           </div>
         </div>
       </div>
-      <button class="btn btn-secondary" data-bind="click: loadAthletes">
-        Load More
-      </button>
+      <div class="d-flex justify-content-center mt-3">
+        <button
+          class="btn btn-secondary btn-lg"
+          data-bind="click: loadAthletes"
+        >
+          Load More
+        </button>
+      </div>
     </main>
     <!-- Modal -->
     <div
@@ -183,7 +188,7 @@
       >
         <img
           class="p-3"
-          src="../../../images/olympic-rings.svg"
+          src="../../images/olympic-rings.svg"
           alt="OLympic Rings"
           style="height: 4.5rem"
         />
