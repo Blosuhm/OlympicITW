@@ -120,16 +120,11 @@
               /></a>
 
               <button
-                class="position-absolute shadow bg-white btn square border-0 rounded-circle fs-4"
-                data-bind="click: function() {$parent.toggleFavorite(Id)} , attr: {id: 'fav-' + Id}, css: {'text-danger': $parent.isFavorite(Id)}"
+                class="fa position-absolute shadow bg-white btn square border-0 rounded-circle fs-4"
+                data-bind="click: function() {$parent.toggleFavorite(Id)} , attr: {id: 'fav-' + Id}, css: {'text-danger': $parent.isFavorite(Id), 'fa-heart': $parent.isFavorite(Id), 'fa-heart-o': !$parent.isFavorite(Id)}"
                 style="width: 3rem; bottom: 0px; right: 3.5rem"
-              >
-                <i
-                  class="fa"
-                  data-bind="css: {'fa-heart': $parent.isFavorite(Id), 'fa-heart-o': !$parent.isFavorite(Id)}"
-                  aria-hidden="true"
-                ></i>
-              </button>
+                aria-hidden="true"
+              ></button>
             </div>
             <div class="card-body mt-auto flex-grow-0">
               <h5
