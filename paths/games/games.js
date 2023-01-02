@@ -40,6 +40,24 @@ function ViewModel() {
     return list;
   };
 
+  //* Favorites
+
+  self.loadFavorites = ko.observableArray(
+    JSON.parse(localStorage.getItem("games")) || []
+  );
+  self.isFavorite = function (id) {
+    return self.loadFavorites().includes(id);
+  };
+  self.toggleFavorite = function (id) {
+    if (self.isFavorite(id)) {
+      self.loadFavorites.remove(id);
+    } else {
+      self.loadFavorites.push(id);
+    }
+    localStorage.setItem("games", JSON.stringify(self.loadFavorites()));
+    console.log(localStorage.getItem("games"));
+  };
+
   //--- Page Events
   self.activate = function (id) {
     console.log("CALL: getGames...");
@@ -102,7 +120,7 @@ function ViewModel() {
 
       if (sParameterName[0] === sParam) {
         return sParameterName[1] === undefined
-          ? undefined
+          ? null
           : decodeURIComponent(sParameterName[1]);
       }
     }

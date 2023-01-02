@@ -61,7 +61,7 @@
               <a
                 class="nav-link"
                 aria-current="page"
-                href="../../../countries/countries.html"
+                href="../../countries/countries.html"
                 ><i class="fa fa-flag-o text-danger"></i> Countries</a
               >
             </li>
@@ -77,7 +77,7 @@
               <a
                 class="nav-link"
                 aria-current="page"
-                href="../../../modalities/modalities.html"
+                href="../../modalities/modalities.html"
                 ><i class="fa fa-soccer-ball-o text-primary"></i> Modalities</a
               >
             </li>
@@ -86,79 +86,52 @@
       </nav>
     </header>
     <!-- Work Area-->
-    <div class="container">
-      <div class="py-2 border-bottom mb-3">
-        <h2 data-bind="text:Name() +' [' + Id() + ']'"></h2>
-      </div>
-      <!-- ko if:Name().length > 0 -->
-      <div class="row border-bottom mx-0 my-1">
-        <div class="col-2">Game Id</div>
-        <div class="col-10" data-bind="text: Id"></div>
-      </div>
-      <div class="row border-bottom mx-0 my-1">
-        <div class="col-2">Name</div>
-        <div class="col-10" data-bind="text: Name"></div>
-      </div>
-      <div class="row border-bottom mx-0 my-1">
-        <div class="col-2">Country Name</div>
-        <div class="col-10" data-bind="text: CountryName"></div>
-      </div>
-      <div class="row border-bottom mx-0 my-1">
-        <div class="col-2">Season</div>
-        <div class="col-10" data-bind="text: Season"></div>
-      </div>
-      <div class="row border-bottom mx-0 my-1">
-        <div class="col-2">Year</div>
-        <div class="col-10" data-bind="text: Year"></div>
-      </div>
-      <div
-        class="row border-bottom mx-0 my-1"
-        data-bind="visible: Logo() != '' && Logo() != null"
-      >
-        <div class="col-2">Logo</div>
-        <div class="small col-10">
-          <img
-            class="img-thumbnail"
-            data-bind="attr:{src: Logo}"
-            alt="logo"
-          /><br /><i class="fa fa-link"></i><br />
-          [<a
-            class="link-dark text-decoration-none"
-            data-bind="attr: { href: Logo }, text: Logo"
-            target="_blank"
-          ></a
-          >]
+    <main class="container">
+      <h1 class="fw-bold" data-bind="text:Name" style="font-size: 5rem"></h1>
+      <hr class="text-secondary" />
+      <div class="row row-cols-4">
+        <div class="text-center">
+          <h3 class="text-muted fw-semibold">Country</h3>
+          <br />
+          <span class="fw-bold fs-5" data-bind="text: Country"></span>
+        </div>
+        <div class="text-center border-start">
+          <h3 class="text-muted fw-semibold">City</h3>
+          <br />
+          <span class="fw-bold fs-5" data-bind="text: City"></span>
+        </div>
+        <div class="text-center border-start">
+          <h3 class="text-muted fw-semibold">Year</h3>
+          <br />
+          <span class="fw-bold fs-5" data-bind="text: Year"></span>
+        </div>
+        <div class="text-center border-start">
+          <h3 class="text-muted fw-semibold">Season</h3>
+          <br />
+          <span class="fw-bold fs-5" data-bind="text: Season"></span>
         </div>
       </div>
-      <div
-        class="row border-bottom mx-0 my-1"
-        data-bind="visible: Photo() != '' && Photo() != null"
-      >
-        <div class="col-2">Photo</div>
-        <div class="small col-10">
-          <img
-            class="img-thumbnail"
-            data-bind="attr:{src: Photo}"
-            alt="photo"
-          /><br />
-          <i class="fa fa-link"></i> [<a
-            class="link-dark text-decoration-none"
-            data-bind="attr: { href: Photo }, text : Photo"
-            target="_blank"
-          ></a
-          >]
-        </div>
+      <hr class="text-secondary" />
+      <div class="d-flex flex-column align-items-center">
+        <h3 class="text-muted fw-semibold">Logo</h3>
+        <br />
+        <img
+          class="img-thumbnail"
+          data-bind="attr:{src: Logo}"
+          alt="Olympic Logo"
+        />
       </div>
-      <!-- /ko -->
-      <a href="../games.html" class="btn btn-default btn-sm small"
-        ><i class="fa fa-list"></i> Back to List</a
-      >
-      <a
-        data-bind="attr: { href:'./gameFull.html?id=' + Id() }"
-        class="btn btn-default btn-sm small"
-        ><i class="fa fa-th"></i> Full Setails</a
-      >
-    </div>
+      <hr class="text-secondary" />
+      <div class="d-flex flex-column align-items-center">
+        <h3 class="text-muted fw-semibold">Photo</h3>
+        <br />
+        <img
+          class="img-thumbnail"
+          data-bind="attr:{src: Photo}"
+          alt="Olympic Logo"
+        />
+      </div>
+    </main>
     <!-- Modal -->
     <div
       class="modal fade"
@@ -187,24 +160,35 @@
       </div>
     </div>
     <!-- End of Work Area -->
-    <footer class="footer-20192" style="margin-top: 13rem;">
+    <footer class="footer-20192" style="margin-top: 13rem">
       <div class="site-section">
         <div class="container">
-
-          <div class="cta d-block d-md-flex align-items-center px-5" style="background-color: #FE5F55 ">
+          <div
+            class="cta d-block d-md-flex align-items-center px-5"
+            style="background-color: #fe5f55"
+          >
             <div>
               <h2 class="mb-0 me-3">Ansioso por novos projetos?</h2>
               <h3 class="text-dark">Não perca nada!</h3>
             </div>
             <div class="ml-auto">
-              <a  href="../../index.html#Novidades" id="btnNov" class="btn btn-outline-light rounded-3 rounded-0 py-3 px-5">Receba novidades</a>
+              <a
+                href="../../../index.html#Novidades"
+                id="btnNov"
+                class="btn btn-outline-light rounded-3 rounded-0 py-3 px-5"
+                >Receba novidades</a
+              >
             </div>
           </div>
           <div class="row">
-
             <div class="col-md-3 col-6">
               <a href="#">
-                <img src="../../../images/olympic-rings.svg" class=" ms-4" width="50%">
+                <img
+                  src="../../../images/olympic-rings.svg"
+                  class="ms-4"
+                  width="50%"
+                  alt=""
+                />
               </a>
               <p class="copyright">
                 <small>&copy; 2023</small>
@@ -215,27 +199,49 @@
               <ul class="list-unstyled links">
                 <li><a href="#">Home</a></li>
                 <li><a href="paths/athletes/athletes.html">Atletas</a></li>
-                <li><a href="paths/modalities/modalities.html">Modalidades</a></li>
+                <li>
+                  <a href="paths/modalities/modalities.html">Modalidades</a>
+                </li>
                 <li><a href="paths/countries/countries.html">Países</a></li>
                 <li><a href="paths/games/games.html">Jogos</a></li>
-                <li><a href="paths/estatistica/estatistica.html">Estatísticas</a></li>
+                <li>
+                  <a href="paths/estatistica/estatistica.html">Estatísticas</a>
+                </li>
               </ul>
             </div>
             <div class="col-3 d-md-block d-none">
               <h3>Links importantes</h3>
               <ul class="list-unstyled links">
                 <li><a href="https://www.ua.pt/">Universidade de Aveiro</a></li>
-                <li><a href="https://www.ua.pt/pt/uc/12289">Introdução às Tecnologias Web </a></li>
+                <li>
+                  <a href="https://www.ua.pt/pt/uc/12289"
+                    >Introdução às Tecnologias Web
+                  </a>
+                </li>
                 <li><a href="https://github.com/detiuaveiro">DETI - UA </a></li>
               </ul>
             </div>
             <div class="col-md-3 col-6">
               <h3>Feito por:</h3>
               <ul class="list-unstyled links">
-                <li><a href="mailto:pmap@ua.pt">pmap@ua.pt</a>&nbsp;&nbsp;&nbsp;<a class="me-5" href="https://github.com/GH-Pedro"><span class="fa fa-github"></span></a></li>
-                <li><a href="mailto:zakhar.kruptsala@ua.pt">zakhar.kruptsala@ua.pt</a>&nbsp;&nbsp;&nbsp;<a class="me-5" href="https://github.com/Blosuhm"><span class="fa fa-github"></span></a></li>
+                <li>
+                  <a href="mailto:pmap@ua.pt">pmap@ua.pt</a>&nbsp;&nbsp;&nbsp;<a
+                    class="me-5"
+                    href="https://github.com/GH-Pedro"
+                    ><span class="fa fa-github"></span
+                  ></a>
+                </li>
+                <li>
+                  <a href="mailto:zakhar.kruptsala@ua.pt"
+                    >zakhar.kruptsala@ua.pt</a
+                  >&nbsp;&nbsp;&nbsp;<a
+                    class="me-5"
+                    href="https://github.com/Blosuhm"
+                    ><span class="fa fa-github"></span
+                  ></a>
+                </li>
               </ul>
-            </div>            
+            </div>
           </div>
         </div>
       </div>

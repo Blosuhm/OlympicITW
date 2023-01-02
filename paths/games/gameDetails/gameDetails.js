@@ -1,36 +1,44 @@
 ﻿// ViewModel KnockOut
-var vm = function () {
+function vm() {
   console.log("ViewModel initiated...");
   //---Variáveis locais
-  var self = this;
+  const self = this;
   self.baseUri = ko.observable("http://192.168.160.58/Olympics/api/Games/");
   self.displayName = "Olympic Games edition Details";
   self.error = ko.observable("");
   self.passingMessage = ko.observable("");
   //--- Data Record
   self.Id = ko.observable("");
-  self.CountryName = ko.observable("");
+  self.Country = ko.observable("");
+  self.City = ko.observable("");
   self.Logo = ko.observable("");
   self.Name = ko.observable("");
   self.Photo = ko.observable("");
   self.Season = ko.observable("");
   self.Year = ko.observableArray("");
+  self.Athletes = ko.observableArray([]);
+  self.Modalities = ko.observableArray([]);
+  self.Competitions = ko.observableArray([]);
+  self.Medals = ko.observableArray([]);
   self.Url = ko.observable("");
 
   //--- Page Events
   self.activate = function (id) {
     console.log("CALL: getGame...");
-    const composedUri = self.baseUri() + id;
+    //const composedUri = `${self.baseUri()}fulldetails?id=${id}`;
+    const composedUri = `${self.baseUri()}${id}`;
     ajaxHelper(composedUri, "GET").done(function (data) {
       console.log(data);
       hideLoading();
       self.Id(data.Id);
-      self.CountryName(data.CountryName);
+      self.Country(data.CountryName);
+      self.City(data.City);
       self.Logo(data.Logo);
       self.Name(data.Name);
       self.Photo(data.Photo);
       self.Season(data.Season);
       self.Year(data.Year);
+      self.Athletes(data.Athletes);
     });
   };
 
@@ -77,22 +85,19 @@ var vm = function () {
     }
   }
 
-  //--- start ....
+  //! start
   showLoading();
-  const pg = getUrlParameter("id");
-  console.log(pg);
-  if (pg == undefined) self.activate(1);
-  else {
-    self.activate(pg);
-  }
+  const id = getUrlParameter("id");
+  console.log(id);
+  id == undefined ? self.activate(1) : self.activate(id);
   console.log("VM initialized!");
-};
+}
 
 $(document).ready(function () {
   console.log("document.ready!");
   ko.applyBindings(new vm());
 });
 
-$(document).ajaxComplete(function (event, xhr, options) {
+$(document).ajaxComplete(function () {
   $("#myModal").modal("hide");
 });

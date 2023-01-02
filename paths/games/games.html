@@ -188,6 +188,12 @@
                     style="height: 16rem; object-fit: contain"
                   />
                 </a>
+                <button
+                  class="fa position-absolute shadow bg-white btn square border-0 rounded-circle fs-4"
+                  data-bind="click: function() {$parent.toggleFavorite(Id)} , attr: {id: 'fav-' + Id}, css: {'text-danger': $parent.isFavorite(Id), 'fa-heart': $parent.isFavorite(Id), 'fa-heart-o': !$parent.isFavorite(Id)}"
+                  style="width: 3rem; top: 11rem; left: 5rem"
+                  aria-hidden="true"
+                ></button>
               </div>
               <ul class="list-group list-group-flush">
                 <li class="list-group-item d-flex justify-content-between">
