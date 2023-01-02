@@ -20,7 +20,15 @@ body {
 }
 
 a {
+  font: inherit;
   color: inherit;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
 }
 
 img,
@@ -309,4 +317,26 @@ li.page-item a {
 .medal-size {
   padding: 0;
   font-size: clamp(2rem, 13vw, 8rem);
+}
+
+.search {
+  border-style: solid;
+  border-color: white;
+  border-width: 2px;
+}
+
+.search input,
+.search input:focus {
+  border: 0px;
+  padding: 0;
+  outline: none;
+  background-color: transparent;
+  user-select: none;
+  width: 0;
+  transition: width 0.5s;
+}
+
+.search:hover input {
+  width: 16rem;
+  transition: width 0.5s;
 }
