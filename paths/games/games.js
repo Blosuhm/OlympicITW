@@ -1,17 +1,16 @@
 ﻿// ViewModel KnockOut
-var vm = function () {
+function ViewModel() {
   console.log("ViewModel initiated...");
   //---Variáveis locais
-  var self = this;
+  const self = this;
   console.log(self);
   self.baseUri = ko.observable("http://192.168.160.58/Olympics/api/games");
-  //self.baseUri = ko.observable('http://localhost:62595/api/drivers');
   self.displayName = "Olympic Game Editions List";
   self.error = ko.observable("");
   self.passingMessage = ko.observable("");
   self.records = ko.observableArray([]);
   self.currentPage = ko.observable(1);
-  self.pagesize = ko.observable(20);
+  self.pagesize = ko.observable(21);
   self.totalRecords = ko.observable(50);
   self.hasPrevious = ko.observable(false);
   self.hasNext = ko.observable(false);
@@ -29,15 +28,15 @@ var vm = function () {
   }, self);
   self.totalPages = ko.observable(0);
   self.pageArray = function () {
-    var list = [];
-    var size = Math.min(self.totalPages(), 9);
-    var step;
+    let list = [];
+    const size = Math.min(self.totalPages(), 9);
+    let step;
     if (size < 9 || self.currentPage() === 1) step = 0;
     else if (self.currentPage() >= self.totalPages() - 4)
       step = self.totalPages() - 9;
     else step = Math.max(self.currentPage() - 5, 0);
 
-    for (var i = 1; i <= size; i++) list.push(i + step);
+    for (let i = 1; i <= size; i++) list.push(i + step);
     return list;
   };
 
@@ -118,11 +117,11 @@ var vm = function () {
     self.activate(pg);
   }
   console.log("VM initialized!");
-};
+}
 
 $(document).ready(function () {
   console.log("ready!");
-  ko.applyBindings(new vm());
+  ko.applyBindings(new ViewModel());
 });
 
 $(document).ajaxComplete(function (event, xhr, options) {

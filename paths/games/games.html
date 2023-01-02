@@ -161,46 +161,62 @@
       <!-- /ko -->
 
       <div>
-        <ul class="list-group gap-5 rounded-0" data-bind="foreach: records">
-          <li class="list-group-item border">
-            <div
-              class="d-flex justify-content-around align-items-center border-bottom"
-            >
-              <a
-                data-bind="attr: {href: `gameDetails/gameDetails.html?id=${Id}`}"
-                class="text-decoration-none"
+        <div class="rounded-0 row row-cols-3" data-bind="foreach: records">
+          <div class="px-3 my-3">
+            <div class="list-group-item border">
+              <div
+                class="d-flex justify-content-around align-items-center border-bottom"
               >
-                <h2 class="text-muted fw-bold" data-bind="text: Name"></h2>
-              </a>
-              <a
-                data-bind="attr: {href: `gameDetails/gameDetails.html?id=${Id}`}"
-              >
-                <img
-                  class="img-thumbnail mb-1"
-                  data-bind="attr: {src: Logo}"
-                  alt=""
-                  style="max-height: 16rem"
-                />
-              </a>
+                <a
+                  data-bind="attr: {href: `gameDetails/gameDetails.html?id=${Id}`}"
+                  class="text-decoration-none"
+                >
+                  <h2
+                    class="text-muted fw-bold fs-3"
+                    data-bind="text: Name"
+                  ></h2>
+                </a>
+                <a
+                  class="d-flex justify-content-center align-items-center m-1"
+                  data-bind="attr: {href: `gameDetails/gameDetails.html?id=${Id}`}"
+                  style="width: 50%"
+                >
+                  <img
+                    class="img-thumbnail"
+                    data-bind="attr: {src: Logo}"
+                    alt=""
+                    style="height: 16rem; object-fit: contain"
+                  />
+                </a>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item d-flex justify-content-between">
+                  <span class="text-muted small">Country:</span
+                  ><span data-bind="text: CountryName"></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                  <span class="text-muted small">City:</span
+                  ><span data-bind="text: CityName"></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                  <span class="text-muted small">Year:</span
+                  ><span data-bind="text: Year"></span>
+                </li>
+              </ul>
+              <img
+                class="border"
+                data-bind="attr: {src: Photo}"
+                alt=""
+                style="
+                  min-width: 100%;
+                  height: 16rem;
+                  object-fit: cover;
+                  object-position: top center;
+                "
+              />
             </div>
-
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item d-flex justify-content-between">
-                <span class="text-muted small">Country:</span
-                ><span data-bind="text: CountryName"></span>
-              </li>
-              <li class="list-group-item d-flex justify-content-between">
-                <span class="text-muted small">City:</span
-                ><span data-bind="text: CityName"></span>
-              </li>
-              <li class="list-group-item d-flex justify-content-between">
-                <span class="text-muted small">Year:</span
-                ><span data-bind="text: Year"></span>
-              </li>
-            </ul>
-            <img data-bind="attr: {src: Photo}" alt="" width="100%" />
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
     </main>
     <!-- Modal -->
@@ -231,24 +247,35 @@
       </div>
     </div>
     <!-- End of Working Area -->
-    <footer class="footer-20192" style="margin-top: 13rem;">
+    <footer class="footer-20192" style="margin-top: 13rem">
       <div class="site-section">
         <div class="container">
-
-          <div class="cta d-block d-md-flex align-items-center px-5" style="background-color: #FE5F55 ">
+          <div
+            class="cta d-block d-md-flex align-items-center px-5"
+            style="background-color: #fe5f55"
+          >
             <div>
               <h2 class="mb-0 me-3">Ansioso por novos projetos?</h2>
               <h3 class="text-dark">Não perca nada!</h3>
             </div>
             <div class="ml-auto">
-              <a  href="../../index.html#Novidades" id="btnNov" class="btn btn-outline-light rounded-3 rounded-0 py-3 px-5">Receba novidades</a>
+              <a
+                href="../../index.html#Novidades"
+                id="btnNov"
+                class="btn btn-outline-light rounded-3 rounded-0 py-3 px-5"
+                >Receba novidades</a
+              >
             </div>
           </div>
           <div class="row">
-
             <div class="col-md-3 col-6">
               <a href="#">
-                <img src="../../images/olympic-rings.svg" class=" ms-4" width="50%">
+                <img
+                  src="../../images/olympic-rings.svg"
+                  class="ms-4"
+                  width="50%"
+                  alt=""
+                />
               </a>
               <p class="copyright">
                 <small>&copy; 2023</small>
@@ -259,27 +286,49 @@
               <ul class="list-unstyled links">
                 <li><a href="#">Home</a></li>
                 <li><a href="paths/athletes/athletes.html">Atletas</a></li>
-                <li><a href="paths/modalities/modalities.html">Modalidades</a></li>
+                <li>
+                  <a href="paths/modalities/modalities.html">Modalidades</a>
+                </li>
                 <li><a href="paths/countries/countries.html">Países</a></li>
                 <li><a href="paths/games/games.html">Jogos</a></li>
-                <li><a href="paths/estatistica/estatistica.html">Estatísticas</a></li>
+                <li>
+                  <a href="paths/estatistica/estatistica.html">Estatísticas</a>
+                </li>
               </ul>
             </div>
             <div class="col-3 d-md-block d-none">
               <h3>Links importantes</h3>
               <ul class="list-unstyled links">
                 <li><a href="https://www.ua.pt/">Universidade de Aveiro</a></li>
-                <li><a href="https://www.ua.pt/pt/uc/12289">Introdução às Tecnologias Web </a></li>
+                <li>
+                  <a href="https://www.ua.pt/pt/uc/12289"
+                    >Introdução às Tecnologias Web
+                  </a>
+                </li>
                 <li><a href="https://github.com/detiuaveiro">DETI - UA </a></li>
               </ul>
             </div>
             <div class="col-md-3 col-6">
               <h3>Feito por:</h3>
               <ul class="list-unstyled links">
-                <li><a href="mailto:pmap@ua.pt">pmap@ua.pt</a>&nbsp;&nbsp;&nbsp;<a class="me-5" href="https://github.com/GH-Pedro"><span class="fa fa-github"></span></a></li>
-                <li><a href="mailto:zakhar.kruptsala@ua.pt">zakhar.kruptsala@ua.pt</a>&nbsp;&nbsp;&nbsp;<a class="me-5" href="https://github.com/Blosuhm"><span class="fa fa-github"></span></a></li>
+                <li>
+                  <a href="mailto:pmap@ua.pt">pmap@ua.pt</a>&nbsp;&nbsp;&nbsp;<a
+                    class="me-5"
+                    href="https://github.com/GH-Pedro"
+                    ><span class="fa fa-github"></span
+                  ></a>
+                </li>
+                <li>
+                  <a href="mailto:zakhar.kruptsala@ua.pt"
+                    >zakhar.kruptsala@ua.pt</a
+                  >&nbsp;&nbsp;&nbsp;<a
+                    class="me-5"
+                    href="https://github.com/Blosuhm"
+                    ><span class="fa fa-github"></span
+                  ></a>
+                </li>
               </ul>
-            </div>            
+            </div>
           </div>
         </div>
       </div>
