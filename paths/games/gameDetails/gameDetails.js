@@ -25,8 +25,7 @@ function vm() {
   //--- Page Events
   self.activate = function (id) {
     console.log("CALL: getGame...");
-    //const composedUri = `${self.baseUri()}fulldetails?id=${id}`;
-    const composedUri = `${self.baseUri()}${id}`;
+    const composedUri = `${self.baseUri()}fulldetails?id=${id}`;
     ajaxHelper(composedUri, "GET").done(function (data) {
       console.log(data);
       hideLoading();
@@ -39,6 +38,9 @@ function vm() {
       self.Season(data.Season);
       self.Year(data.Year);
       self.Athletes(data.Athletes);
+      self.Modalities(data.Modalities);
+      self.Competitions(data.Competitions);
+      self.Medals(data.Medals);
     });
   };
 

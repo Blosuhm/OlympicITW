@@ -131,6 +131,126 @@
           alt="Olympic Logo"
         />
       </div>
+      <hr class="text-secondary" />
+      <div class="row row-cols-2">
+        <div class="p-3">
+          <h2 class="text-muted fw-semibold">Athletes</h2>
+          <div
+            class="border overflow-games"
+            style="height: 20rem"
+            data-bind="foreach: Athletes"
+          >
+            <div class="row row-cols-2 p-0 border-dark">
+              <div class="border d-flex">
+                <span class="text-muted small">Name:</span
+                ><a
+                  class="flex-grow-1 ms-3 fw-bold text-decoration-none text-black"
+                  data-bind="text: Name, attr: {href: `../../athletes/athleteDetails/athleteDetails.html?id=${Id}`} "
+                ></a>
+              </div>
+              <div class="border d-flex">
+                <span class="text-muted small">Position:</span
+                ><span
+                  class="flex-grow-1 text-end fw-bold pe-2"
+                  data-bind="text: BestPosition"
+                ></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="p-3">
+          <h2 class="text-muted fw-semibold">Competitions</h2>
+          <div
+            class="border overflow-games"
+            style="height: 20rem"
+            data-bind="foreach: Competitions"
+          >
+            <div class="row row-cols-2 p-0 border-dark">
+              <div class="border d-flex">
+                <span class="text-muted small">Name:</span
+                ><span
+                  class="flex-grow-1 ms-3 fw-bold text-decoration-none text-black"
+                  data-bind="text: Name"
+                ></span>
+              </div>
+              <div class="border d-flex">
+                <span class="text-muted small">Modality:</span
+                ><span
+                  class="flex-grow-1 text-end fw-bold pe-2"
+                  data-bind="text: Modality"
+                ></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="p-3">
+          <h2 class="text-muted fw-semibold">Modalities</h2>
+          <div
+            class="border overflow-games"
+            style="height: 42rem"
+            data-bind="foreach: Modalities"
+          >
+            <div class="row row-cols-2 p-0 border">
+              <div class="d-flex">
+                <span
+                  class="flex-grow-1 ms-3 d-flex fw-bold text-decoration-none justify-content-center align-items-center fs-4 text-black"
+                  data-bind="text: Name"
+                ></span>
+              </div>
+              <div class="p-0">
+                <img data-bind="attr: {src: Photo}" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="p-3">
+          <h2 class="text-muted fw-semibold">Medals</h2>
+          <div class="" style="height: 42rem" data-bind="foreach: Medals">
+            <!-- ko if: MedalName === "Gold" -->
+            <div class="row row-cols-2 p-0 border">
+              <div class="d-flex">
+                <span
+                  class="flex-grow-1 ms-3 d-flex fw-bold text-decoration-none justify-content-center align-items-center text-black medal-size"
+                  >🥇</span
+                >
+              </div>
+              <div
+                class="medal-size text-center"
+                data-bind="text: Counter"
+              ></div>
+            </div>
+            <!-- /ko -->
+            <!-- ko if: MedalName === "Silver" -->
+            <div class="row row-cols-2 p-0 border">
+              <div class="d-flex">
+                <span
+                  class="flex-grow-1 ms-3 d-flex fw-bold text-decoration-none justify-content-center align-items-center text-black medal-size"
+                  >🥈</span
+                >
+              </div>
+              <div
+                class="medal-size text-center"
+                data-bind="text: Counter"
+              ></div>
+            </div>
+            <!-- /ko -->
+            <!-- ko if: MedalName === "Bronze" -->
+            <div class="row row-cols-2 p-0 border">
+              <div class="d-flex">
+                <span
+                  class="flex-grow-1 ms-3 d-flex fw-bold text-decoration-none justify-content-center align-items-center text-black medal-size"
+                  >🥉</span
+                >
+              </div>
+              <div
+                class="medal-size text-center"
+                data-bind="text: Counter"
+              ></div>
+            </div>
+            <!-- /ko -->
+          </div>
+        </div>
+      </div>
     </main>
     <!-- Modal -->
     <div
