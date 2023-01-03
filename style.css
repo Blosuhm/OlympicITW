@@ -6,6 +6,7 @@ body {
   /** Prevents Margin Collapse */
   padding-top: 1px;
   margin-top: -1px;
+  background-color: #F5F7FA;
 }
 *,
 *::before,
