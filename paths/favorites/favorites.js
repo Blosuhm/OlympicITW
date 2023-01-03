@@ -13,41 +13,25 @@ function ViewModel() {
   self.favGames = ko.observableArray(JSON.parse(localStorage.getItem("games")));
 
   self.toggleFavAthletes = function (data) {
-    if (self.isFavorite(data.Id)) {
-      self.favAthletes.remove(data);
-    } else {
-      self.favAthletes.push(data);
-    }
+    self.favAthletes.remove(data);
     localStorage.setItem("athletes", JSON.stringify(self.favAthletes()));
     console.log(localStorage.getItem("athletes"));
   };
 
   self.toggleFavCountries = function (data) {
-    if (self.isFavorite(data.Id)) {
-      self.favCountries.remove(data);
-    } else {
-      self.favCountries.push(data);
-    }
+    self.favCountries.remove(data);
     localStorage.setItem("countries", JSON.stringify(self.favCountries()));
     console.log(localStorage.getItem("countries"));
   };
 
   self.toggleFavModalities = function (data) {
-    if (self.isFavorite(data.Id)) {
-      self.favModalities.remove(data);
-    } else {
-      self.favModalities.push(data);
-    }
+    self.favModalities.remove(data);
     localStorage.setItem("modalities", JSON.stringify(self.favModalities()));
     console.log(localStorage.getItem("modalities"));
   };
 
   self.toggleFavGames = function (data) {
-    if (self.isFavorite(data.Id)) {
-      self.favGames.remove(data);
-    } else {
-      self.favGames.push(data);
-    }
+    self.favGames.remove(data);
     localStorage.setItem("games", JSON.stringify(self.favGames()));
     console.log(localStorage.getItem("games"));
   };
@@ -57,3 +41,42 @@ $().ready(function () {
   ko.applyBindings(new ViewModel());
   console.log("Viewmodel initiated!");
 });
+
+function addShadow() {
+  $(".gold").each(function () {
+    let element = $(this);
+    let uncle = element
+      .parent()
+      .siblings()
+      .first()
+      .children()
+      .first()
+      .children()
+      .first();
+    uncle.addClass("shadow-gold");
+  });
+  $(".silver").each(function () {
+    let element = $(this);
+    let uncle = element
+      .parent()
+      .siblings()
+      .first()
+      .children()
+      .first()
+      .children()
+      .first();
+    uncle.addClass("shadow-silver");
+  });
+  $(".bronze").each(function () {
+    let element = $(this);
+    let uncle = element
+      .parent()
+      .siblings()
+      .first()
+      .children()
+      .first()
+      .children()
+      .first();
+    uncle.addClass("shadow-bronze");
+  });
+}

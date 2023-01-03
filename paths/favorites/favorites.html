@@ -120,7 +120,7 @@
               data-bs-parent="#accordionFlushExample"
             >
               <div class="accordion-body">
-                <div data-bind="foreach: favAthletes">
+                <div class="row row-cols-4" data-bind="foreach: favAthletes">
                   <div>
                     <div class="card mt-3 mx-1 shadow border-0 athlete-card">
                       <div class="d-flex" data-bind="foreach: Details.Medals">
@@ -185,8 +185,50 @@
               aria-labelledby="flush-headingTwo"
               data-bs-parent="#accordionFlushExample"
             >
-              <div class="accordion-body">
-                <div></div>
+              <div class="accordion-body justify-content-center d-flex">
+                <div class="d-flex justify-content-center">
+                  <div
+                    class="d-flex justify-content-between flex-wrap"
+                    data-bind="foreach: favCountries"
+                  >
+                    <div
+                      class="card shadow col-6 col-sm-6 col-md-4 col-lg-3 m-3 p-0 text-center position-relative"
+                    >
+                      <div class="card-body">
+                        <div class="p-3 mt-4">
+                          <div
+                            class="shadow d-flex h-25 justify-content-center"
+                          >
+                            <img
+                              class="country w-100 img-fluid"
+                              data-bind="attr: { src: Flag, alt: Name }"
+                              style="height: 8rem; width: 10rem"
+                              alt=""
+                            />
+                            <!-- Esta no countries.js a config do .fav -->
+                            <button
+                              class="shadow fav btn m-0 fa text-danger fa-heart rounded-circle p-3 bg-white position-absolute fs-4"
+                              data-bind="click: function() {$parent.toggleFavCountries($data)} , attr: {id: 'fav-' + Id}"
+                              title="Selecione para adicionar aos favoritos"
+                              style="top: 10.5rem"
+                            ></button>
+                          </div>
+                          <br />
+                        </div>
+                        <h5
+                          class="text-center my-3"
+                          style="font-size: 1.7rem"
+                          data-bind="text: Name"
+                        ></h5>
+                        <a
+                          class="btn btn-outline-primary"
+                          data-bind="attr: { href:'./countryDetails/countryDetails.html?id=' + Id }"
+                          >Ver mais</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

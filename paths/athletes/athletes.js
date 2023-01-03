@@ -22,6 +22,9 @@ function ViewModel() {
   };
   self.toggleFavorite = function (data) {
     console.log(data);
+    data.Details.Medals = data.Details.Medals();
+    data.Details.Country = data.Details.Country();
+    data.Details.Modality = data.Details.Modality();
     if (self.isFavorite(data.Id)) {
       self.loadFavorites.remove(data);
     } else {
