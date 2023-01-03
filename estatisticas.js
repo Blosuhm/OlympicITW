@@ -260,6 +260,14 @@ function ViewModel(){
 
 $(document).ready(function() {
     
+    $('#BackTop-button').click(function() {
+        // Scroll to the element with the ID "target-element"
+        $('html, body').animate({
+          scrollTop: $('#target-element').offset().top
+        }, 1000);
+      });
+
+
     function ajaxHelper(uri, method, data) {
         return $.ajax({
             type: method,
@@ -531,6 +539,7 @@ $(document).ready(function() {
         });
 
     });
+
 
     
     ko.applyBindings(new ViewModel());
