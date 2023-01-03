@@ -120,7 +120,10 @@
               data-bs-parent="#accordionFlushExample"
             >
               <div class="accordion-body">
-                <div class="row row-cols-4" data-bind="foreach: favAthletes">
+                <div
+                  class="row row-cols-1 row-cols-md-2 row-cols-lg-4"
+                  data-bind="foreach: favAthletes"
+                >
                   <div>
                     <div class="card mt-3 mx-1 shadow border-0 athlete-card">
                       <div class="d-flex" data-bind="foreach: Details.Medals">
@@ -220,7 +223,7 @@
                       <a
                         class="btn btn-outline-primary"
                         data-bind="attr: { href:'./countryDetails/countryDetails.html?id=' + Id }"
-                        >Ver mais</a
+                        >View More</a
                       >
                     </div>
                   </div>
@@ -248,7 +251,41 @@
               data-bs-parent="#accordionFlushExample"
             >
               <div class="accordion-body">
-                <div></div>
+                <div
+                  class="d-flex justify-content-center flex-wrap"
+                  data-bind="foreach: favModalities"
+                >
+                  <div
+                    class="card shadow col-6 col-sm-6 col-md-4 col-lg-3 m-3 p-0 text-center position-relative"
+                  >
+                    <div class="card-body">
+                      <div class="p-3 mt-4 athlete-card">
+                        <div class="shadow d-flex h-25 justify-content-center">
+                          <img
+                            type="button"
+                            class="modalitie w-100 img-fluid rounded-3"
+                            data-bind="attr: { src: Photo, alt: Name}, event: { click: function() { $parent.openModal(Id) } } "
+                            style="height: 8rem; width: 10rem"
+                            alt=""
+                          />
+                          <!-- Esta no countries.js a config do .fav -->
+                          <button
+                            class="fa fa-heart text-danger position-absolute shadow bg-white btn square border-0 rounded-circle fs-4"
+                            data-bind="click: function() {$parent.toggleFavModalities($data)} , attr: {id: 'fav-' + Id}"
+                            style="width: 3rem; top: 10.5rem"
+                            aria-hidden="true"
+                          ></button>
+                        </div>
+                        <br />
+                      </div>
+                      <h5
+                        class="text-center my-3"
+                        style="font-size: 1.7rem"
+                        data-bind="text: Name"
+                      ></h5>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -272,7 +309,77 @@
               data-bs-parent="#accordionFlushExample"
             >
               <div class="accordion-body">
-                <div></div>
+                <div
+                  class="row row-cols-1 row-cols-md-2 row-cols-lg-3"
+                  data-bind="foreach: favGames"
+                >
+                  <div class="px-3 my-3">
+                    <div class="list-group-item border bg-white shadow">
+                      <div
+                        class="d-flex justify-content-around align-items-center border-bottom"
+                      >
+                        <a
+                          data-bind="attr: {href: `gameDetails/gameDetails.html?id=${Id}`}"
+                          class="text-decoration-none"
+                        >
+                          <h2
+                            class="text-muted fw-bold fs-3"
+                            data-bind="text: Name"
+                          ></h2>
+                        </a>
+                        <a
+                          class="d-flex justify-content-center align-items-center m-1"
+                          data-bind="attr: {href: `gameDetails/gameDetails.html?id=${Id}`}"
+                          style="width: 50%"
+                        >
+                          <img
+                            class="img-thumbnail"
+                            data-bind="attr: {src: Logo}"
+                            alt=""
+                            style="height: 16rem; object-fit: contain"
+                          />
+                        </a>
+                        <button
+                          class="fa fa-heart text-danger position-absolute shadow bg-white btn square border-0 rounded-circle fs-4"
+                          data-bind="click: function() {$parent.toggleFavGames($data)}, attr: {id: 'fav-' + Id}"
+                          style="width: 3rem; top: 11rem; left: 5rem"
+                          aria-hidden="true"
+                        ></button>
+                      </div>
+                      <ul class="list-group list-group-flush">
+                        <li
+                          class="list-group-item d-flex justify-content-between"
+                        >
+                          <span class="text-muted small">Country:</span
+                          ><span data-bind="text: CountryName"></span>
+                        </li>
+                        <li
+                          class="list-group-item d-flex justify-content-between"
+                        >
+                          <span class="text-muted small">City:</span
+                          ><span data-bind="text: CityName"></span>
+                        </li>
+                        <li
+                          class="list-group-item d-flex justify-content-between"
+                        >
+                          <span class="text-muted small">Year:</span
+                          ><span data-bind="text: Year"></span>
+                        </li>
+                      </ul>
+                      <img
+                        class="border"
+                        data-bind="attr: {src: Photo}"
+                        alt=""
+                        style="
+                          min-width: 100%;
+                          height: 16rem;
+                          object-fit: cover;
+                          object-position: top center;
+                        "
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
