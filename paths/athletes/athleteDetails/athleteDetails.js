@@ -36,8 +36,8 @@ function ViewModel() {
       self.medals(data.Medals);
       self.bornPlace(data.BornPlace);
       self.bornDate(data.BornDate ? data.BornDate.slice(0, 4) : "No Data");
-      self.deathPlace(data.DeathPlace);
-      self.deathDate(data.DeathDate ? data.DeathDate.slice(0, 4) : "No Data");
+      self.deathPlace(data.DiedPlace);
+      self.deathDate(data.DiedDate ? data.DiedDate.slice(0, 4) : "No Data");
       self.games(data.Games);
       self.modalities(data.Modalities);
       self.modality(data.Modalities[0].Name);
