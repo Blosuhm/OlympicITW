@@ -144,7 +144,130 @@ $(document).ready(function () {
     }, 1000);
   });
   console.log("ready!");
+
+  function ajaxHelper(uri, method, data) { // Clear error message
+    return $.ajax({
+      type: method,
+      url: uri,
+      dataType: "json",
+      contentType: "application/json",
+      data: data ? JSON.stringify(data) : null,
+      error: function (jqXHR, textStatus, errorThrown) {
+        console.log("AJAX Call[" + uri + "] Fail...");
+      },
+    });
+  }
   ko.applyBindings(new ViewModel());
+  ajaxHelper("http://192.168.160.58/Olympics/api/Games?page=1&pagesize=60", "GET").done(function (data) {
+      var Names = data.Records.map(function (item) {
+        return item.Name;
+      });
+      var Cities = data.Records.map(function (item) {
+        return item.CityName;
+      });
+      var Logos = data.Records.map(function (item) {
+        return item.Logo;
+      });
+      var Coords = data.Records.map(function (item) {
+        return [item.Lat, item.Lon];
+      });
+      var ids = data.Records.map(function (item) {
+        return item.Id;
+      });
+
+      var summerIcon = L.icon({
+        iconUrl: '../../images/summer.svg',
+        iconSize: [32, 32]
+      });
+      
+      var winterIcon = L.icon({
+        iconUrl: '../../images/winter.svg',
+        iconSize: [32, 32]
+      });
+
+      var map = L.map('map').setView([51.505, -0.09], 13);
+        
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; &nbsp;',
+          maxZoom: 18,
+          wrapLatLng: true
+      }).addTo(map);
+
+      L.Control.Watermark = L.Control.extend({
+        onAdd: function(map) {
+            var img = L.DomUtil.create('img');
+    
+            img.src = '../../images/watermark.png';
+            img.style.width = '15rem';
+    
+            return img;
+        },
+    
+        onRemove: function(map) {
+            // Nothing to do here
+          }
+      });
+      map.addControl(new L.Control.Watermark());
+
+            // Cria os ícones de verão e inverno
+      var summerIcon = L.icon({
+        iconUrl: '../../images/summer.png',
+        iconSize: [32, 32]
+      });
+
+      var winterIcon = L.icon({
+        iconUrl: '../../images/winter.png',
+        iconSize: [32, 32]
+      });
+
+      // Itera sobre as coordenadas e cria marcadores com os ícones apropriados
+      var markers = [];
+      for (var i = 0; i < Coords.length; i++) {
+        var coord = Coords[i];
+        var name = Names[i];
+        var id = ids[i];
+
+        var marker;
+        if (name.includes("Summer")) {
+          marker = L.marker(coord, {icon: summerIcon}).addTo(map);
+        } else if (name.includes("Winter")) {
+          marker = L.marker(coord, {icon: winterIcon}).addTo(map);
+        } else {
+          marker = L.marker(coord).addTo(map);
+        }
+        //http://127.0.0.1:5500/paths/games/gameDetails/gameDetails.html?id=3
+        marker.bindPopup("<div type='button' onclick='window.location.href=\"gameDetails/gameDetails.html?id="+id+"\"'>"+"<b>" + name + '</b>' + "<br>" + Cities[i] + "<br>" + "<img src='" + Logos[i] + "' width='300rem' height='100rem' />"+"</div>");
+        markers.push(marker);
+      }
+
+            // Cria um array para armazenar os limites do mapa
+      var bounds = new L.LatLngBounds();
+
+      // Itera sobre os marcadores e adiciona cada coordenada aos limites do mapa
+      for (var i = 0; i < markers.length; i++) {
+        bounds.extend(markers[i].getLatLng());
+      }
+
+      // Ajusta o mapa para que todos os marcadores fiquem visíveis e define os limites do mapa
+      map.fitBounds(bounds);
+      map.setMaxBounds([
+        [-90, -180], // limite mínimo de latitude e longitude
+        [90, 180] // limite máximo de latitude e longitude
+      ]);
+      map.setMinZoom(2);
+      map.setMaxZoom(18);
+
+            
+
+
+
+  });
+
+  
+
+
+  
 });
 
 $(document).ajaxComplete(function (event, xhr, options) {

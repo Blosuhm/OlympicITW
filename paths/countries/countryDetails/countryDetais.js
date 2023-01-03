@@ -211,35 +211,25 @@ var vm = function () {
     console.log(self.bestAtletas());
   });
 
-  self.ouro = ko.observable({});
-  self.prata = ko.observable({});
-  self.bronze = ko.observable({});
+  self.ouro = ko.observable(0);
+  self.prata = ko.observable(0);
+  self.bronze = ko.observable(0);
 
   self.checkOuro = ko.computed(function () {
-    var composedUri = "../medalhas.json";
+    var composedUri = "http://192.168.160.58/Olympics/api/Statistics/Medals_Games?id=" + self.Id();
     console.log(composedUri);
     ajaxHelper(composedUri, "GET").done(function (data) {
+      var ouro = 0;
+      var prata = 0;
+      var bronze = 0;
       data.map(function (item) {
-        self.ouro()[item.CountryId] = item.Medals[0].Counter;
+        ouro += item.Medals[0].Counter;
+        prata += item.Medals[1].Counter;
+        bronze += item.Medals[2].Counter;
       });
-    });
-  });
-
-  self.checkPrata = ko.computed(function () {
-    var composedUri = "../medalhas.json";
-    ajaxHelper(composedUri, "GET").done(function (data) {
-      data.map(function (item) {
-        self.prata()[item.CountryId] = item.Medals[1].Counter;
-      });
-    });
-  });
-
-  self.checkBronze = ko.computed(function () {
-    var composedUri = "../medalhas.json";
-    ajaxHelper(composedUri, "GET").done(function (data) {
-      data.map(function (item) {
-        self.bronze()[item.CountryId] = item.Medals[2].Counter;
-      });
+      self.ouro(ouro)
+      self.prata(prata)
+      self.bronze(bronze)
     });
   });
 

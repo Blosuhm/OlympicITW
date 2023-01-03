@@ -283,7 +283,7 @@ $(document).ready(function() {
     
     let myChart0;
 
-   ajaxHelper("../countries/medalhas.json", "GET").done(function (data) {
+   ajaxHelper("http://192.168.160.58/Olympics/api/Statistics/Medals_Country", "GET").done(function (data) {
         var graph0Data = data;
 
         Countries = graph0Data.map(function(d) { return d.CountryName; });
