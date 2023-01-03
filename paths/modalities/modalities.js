@@ -48,29 +48,27 @@ var vm = function () {
   self.somResults = ko.observable(0);
   self.modalId = ko.observable(0);
 
-
   self.openModal = function (id) {
     //$("#myModal").modal("show");
     showLoading();
-    ajaxHelper("http://192.168.160.58/Olympics/api/Modalities/"+id, "GET").done(function (data) {
-      console.log(data.Id)
+    ajaxHelper(
+      "http://192.168.160.58/Olympics/api/Modalities/" + id,
+      "GET"
+    ).done(function (data) {
+      console.log(data.Id);
       self.modalId(data.Id);
       self.modalName(data.Name);
       self.modalPhoto(data.Photo);
       self.modalModalities(data.Modalities);
       var soma = 0;
-      data.Modalities.forEach(element => {
-        soma += element.Results
+      data.Modalities.forEach((element) => {
+        soma += element.Results;
       });
       self.somResults(soma);
       $("#modalDetails").modal("show");
-      $("#modalDetails").change(hideLoading())
-
+      $("#modalDetails").change(hideLoading());
     });
-    
-  }
-
-
+  };
 
   //Favourites
   self.loadFavorites = ko.observableArray(
@@ -88,9 +86,6 @@ var vm = function () {
     localStorage.setItem("countries", JSON.stringify(self.loadFavorites()));
     console.log(localStorage.getItem("countries"));
   };
-
-
-
 
   //--- Page Events
   self.activate = function (id) {
@@ -110,7 +105,6 @@ var vm = function () {
       //self.SetFavourites();
     });
   };
-  
 
   //--- Internal functions
   function ajaxHelper(uri, method, data) {
@@ -179,11 +173,14 @@ var vm = function () {
 $(document).ready(function () {
   $("#modalDetails").modal("hide");
 
-  $('#BackTop-button').click(function() {
+  $("#BackTop-button").click(function () {
     // Scroll to the element with the ID "target-element"
-    $('html, body').animate({
-      scrollTop: $('#target-element').offset().top
-    }, 1000);
+    $("html, body").animate(
+      {
+        scrollTop: $("#target-element").offset().top,
+      },
+      1000
+    );
   });
   console.log("ready!");
   ko.applyBindings(new vm());
