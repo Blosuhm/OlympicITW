@@ -56,6 +56,22 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav gap-3 ms-auto me-5 fs-5 align-items-end">
             <li class="nav-item">
+              <a
+                class="nav-link"
+                aria-current="page"
+                href="../statistics/statistics.html"
+                ><i class="fa fa-bar-chart text-secondary"></i> Statistics</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                aria-current="page"
+                href="../statistics/statistics.html"
+                ><i class="fa fa-bar-chart text-secondary"></i> Statistics</a
+              >
+            </li>
+            <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#"
                 ><i class="fa fa-user-o text-warning"></i> Athletes</a
               >
@@ -86,6 +102,7 @@
       </nav>
     </header>
     <!-- Working Area -->
+    <div id="target-element">&nbsp;</div>
     <main class="container my-3">
       <div class="border-bottom pb-3 mb-3">
         <h2 data-bind="text:displayName"></h2>
@@ -172,6 +189,18 @@
         </div>
       </div>
     </div>
+    <div
+      class="fixed-bottom end-0 d-flex justify-content-end"
+      style="height: 6rem"
+    >
+      <img
+        src="../../images/BackTop.svg"
+        type="button"
+        class="me-5 mb-5 text-"
+        id="BackTop-button"
+        alt=""
+      />
+    </div>
     <!-- End of Working Area -->
     <footer class="footer-20192">
       <div class="site-section">
@@ -193,14 +222,14 @@
             <div class="col-3 d-md-block d-none">
               <h3>About</h3>
               <ul class="list-unstyled links">
-                <li><a href="#">Home</a></li>
-                <li><a href="../athletes/athletes.html">Athletes</a></li>
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../athletes/athletes.html">Atletas</a></li>
+                <li><a href="../modalities/modalities.html">Modalidades</a></li>
+                <li><a href="../countries/countries.html">Países</a></li>
+                <li><a href="../games/games.html">Jogos</a></li>
                 <li>
-                  <a href="../modalities/modalities.html">Modalities</a>
+                  <a href="../statistics/statistics.html">Estatísticas</a>
                 </li>
-                <li><a href="../countries/countries.html">Countries</a></li>
-                <li><a href="../games/games.html">Games</a></li>
-                <li><a href="../statistics/statistics.html">Statistics</a></li>
               </ul>
             </div>
             <div class="col-3 d-md-block d-none">

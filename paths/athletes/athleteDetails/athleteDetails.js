@@ -107,6 +107,13 @@ function ViewModel() {
 }
 
 $(document).ready(function () {
+  	
+	$('#BackTop-button').click(function() {
+    // Scroll to the element with the ID "target-element"
+    $('html, body').animate({
+      scrollTop: $('#target-element').offset().top
+    }, 1000);
+  });
   console.log("Document ready...");
   ko.applyBindings(new ViewModel());
 });
