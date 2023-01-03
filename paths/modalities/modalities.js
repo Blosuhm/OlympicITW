@@ -113,11 +113,13 @@ var vm = function () {
   //--- start ....
   showLoading();
   var pg = getUrlParameter("page");
+  const id = getUrlParameter("id");
   console.log(pg);
   if (pg == undefined) self.activate(1);
   else {
     self.activate(pg);
   }
+  self.openModal(id);
   console.log("VM initialized!");
 };
 
