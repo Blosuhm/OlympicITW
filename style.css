@@ -6,7 +6,7 @@ body {
   /** Prevents Margin Collapse */
   padding-top: 1px;
   margin-top: -1px;
-  background-color: #F5F7FA;
+  background-color: #f5f7fa;
 }
 *,
 *::before,
@@ -324,20 +324,26 @@ li.page-item a {
   border-style: solid;
   border-color: white;
   border-width: 2px;
+  max-width: 16rem;
 }
 
-.search input,
-.search input:focus {
+.search input {
   border: 0px;
   padding: 0;
   outline: none;
   background-color: transparent;
   user-select: none;
   width: 0;
-  transition: width 0.5s;
+  transition: width 0.5s ease-in-out;
 }
 
-.search:hover input {
-  width: 16rem;
-  transition: width 0.5s;
+.search input.active {
+  width: 14rem;
+  transition: width 0.5s ease-in-out;
+}
+.search-results {
+  display: none;
+}
+.search.active .search-results {
+  display: block;
 }

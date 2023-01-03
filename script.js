@@ -1,6 +1,6 @@
 function vm() {
   const self = this;
-
+  self.error = ko.observable("");
   self.nome = ko.observable("");
   self.email = ko.observable("");
   self.telemovel = ko.observable("");
@@ -29,8 +29,89 @@ function vm() {
     self.email("");
     self.telemovel("");
   };
-}
 
+  //* Internal Functions
+
+  function ajaxHelper(uri, method, data) {
+    self.error(""); // Clear error message
+    return $.ajax({
+      type: method,
+      url: uri,
+      dataType: "json",
+      contentType: "application/json",
+      data: data ? JSON.stringify(data) : null,
+      error: function (jqXHR, textStatus, errorThrown) {
+        console.log("AJAX Call[" + uri + "] Fail...");
+        self.error(errorThrown);
+      },
+    });
+  }
+
+  //* End of Internal Functions
+
+  //! Search Functionality
+  self.countriesURL = ko.observable(
+    "http://192.168.160.58/olympics/api/countries"
+  );
+  self.athletesURL = ko.observable(
+    "http://192.168.160.58/olympics/api/athletes"
+  );
+  self.gamesURL = ko.observable("http://192.168.160.58/olympics/api/games");
+  self.modalitiesURL = ko.observable(
+    "http://192.168.160.58/olympics/api/modalities"
+  );
+  self.minInputSize = ko.observable(3);
+  self.searchInput = ko.observable("");
+  self.searched = ko.observable(false);
+  self.searchCountries = ko.observableArray([]);
+  self.searchAthletes = ko.observableArray([]);
+  self.searchGames = ko.observableArray([]);
+  self.searchModalities = ko.observableArray([]);
+  self.lastSearch = ko.observable(Date.now());
+
+  self.activateSearch = function () {
+    self.searched(false);
+    let timeElapsed = Date.now() - self.lastSearch();
+    console.log("time elapsed:", timeElapsed);
+    console.log(self.searchInput().length);
+    if (timeElapsed > 200) {
+      if (self.searchInput().length > self.minInputSize()) {
+        console.log("searching");
+
+        let countriesURL = `${self.countriesURL()}/searchbyname?q=${self.searchInput()}`;
+        ajaxHelper(countriesURL, "GET").done(function (data) {
+          self.searchCountries(data ? data : ["No results found"]);
+          // console.log("countries:", self.searchCountries());
+        });
+        let athletesURL = `${self.athletesURL()}/searchbyname?q=${self.searchInput()}`;
+        ajaxHelper(athletesURL, "GET").done(function (data) {
+          self.searchAthletes(data ? data : ["No results found"]);
+          console.log("athletes:", self.searchAthletes());
+        });
+        let gamesURL = `${self.gamesURL()}/searchbyname?q=${self.searchInput()}`;
+        ajaxHelper(gamesURL, "GET").done(function (data) {
+          self.searchGames(data ? data : ["No results found"]);
+          // console.log("games:", self.searchGames());
+        });
+        let modalitiesURL = `${self.modalitiesURL()}/searchbyname?q=${self.searchInput()}`;
+        ajaxHelper(modalitiesURL, "GET").done(function (data) {
+          self.searchModalities(data ? data : ["No results found"]);
+          // console.log("modalities:", self.searchModalities());
+        });
+        self.searched(true);
+      } else {
+        self.searchCountries([]);
+        self.searchAthletes([]);
+        self.searchGames([]);
+        self.searchModalities([]);
+      }
+      self.lastSearch(Date.now());
+    }
+    console.log("searched");
+  };
+  //! End of Search Functionality
+}
+//* Carousel
 $("document").ready(function () {
   ko.applyBindings(new vm());
 
@@ -45,8 +126,9 @@ $("document").ready(function () {
   $(".navbarButton2").hover(function () {
     $(this).toggleClass("btn btn-primary ");
   });
+  //* End of Carousel
 
-  // Cria um mapa e define a posição inicial e o zoom
+  //* Map
   // Cria um mapa e define a posição inicial e o zoom
   const map = L.map("map").setView([40.633062, -8.659224], 20);
 
@@ -80,7 +162,7 @@ $("document").ready(function () {
   //Adiciona um marcador na Avenida João Jacinto Magalhães
   L.marker([40.633062, -8.659224])
     .addTo(map)
-    .bindPopup("Estamos aqui!")
+    .bindPopup("We are here!")
     .openPopup();
 
   map.on("click", function (event) {
@@ -134,14 +216,24 @@ $("document").ready(function () {
   handleScroll();
 });
 
+//* End of Map
+
 //! Search
 
 $(".search").on("mouseenter", function () {
   $(".search input").focus();
-  $(".search input").val("");
+  if (!$(".search input")[0].classList.contains("active")) {
+    $(".search input").toggleClass("active");
+    $(".search").toggleClass("active");
+    $(".search-results").toggleClass("active");
+  }
 });
 
-$(".search").on("mouseleave", function () {
-  $(".search input").blur();
+$(".search").on("focusout", function () {
+  if ($(".search input")[0].classList.contains("active")) {
+    $(".search input").toggleClass("active");
+    $(".search").toggleClass("active");
+    $(".search-results").toggleClass("active");
+  }
   $(".search input").val("");
 });
