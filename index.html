@@ -34,7 +34,7 @@
     <script src="libs/knockout-3.5.1.js"></script>
     <script src="libs/jquery-ui/jquery-ui.min.js"></script>
 
-    <title>Template</title>
+    <title>ITW 2022/23 - Olympic Athletes List</title>
     <style>
       .carousel {
         margin: 0;
@@ -92,35 +92,41 @@
 
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
-            <li class="nav-item search rounded-pill">
-              <a
-                class="fa fa-search nav-link mx-2 active text-white text-center"
+            <li
+              class="nav-item search rounded-pill d-flex justify-content-center align-items-center"
+            >
+              <button
+                class="fa fa-search mx-2 active text-white text-center btn border-0 p-2 fs-5"
                 aria-current="page"
-                href="paths/modalities/modalities.html"
-              ></a
-              ><input class="text-white" type="text" placeholder="Search" />
+              ></button>
+              <input
+                class="text-white"
+                type="text"
+                placeholder="Search"
+                data-bind="value: searchInput, event: {input: activateSearch}"
+              />
             </li>
             <li class="nav-item">
               <a
                 class="nav-link mx-2 active text-white navbarButton text-center"
                 aria-current="page"
                 href="paths/modalities/modalities.html"
-                >Modalidades</a
+                >Modalities</a
               >
             </li>
             <li class="nav-item">
               <a
                 class="nav-link mx-2 text-white navbarButton text-center"
                 href="paths/countries/countries.html"
-                >Países</a
+                >Countries</a
               >
             </li>
 
             <li class="nav-item">
               <a
                 class="nav-link mx-2 text-white border border-2 rounded-pill navbarButton2 text-center"
-                href="estatisticas.html"
-                >Estatísticas</a
+                href="paths/statistics/statistics.html"
+                >Statistics</a
               >
             </li>
           </ul>
@@ -170,29 +176,29 @@
                 class="nav-link text-light"
                 aria-current="page"
                 id="scroll-button1"
-                >Curiosidades</a
+                >Curiosities</a
               >
             </li>
             <li class="nav-item mx-4 mt-2 d-md-block d-none">
               <a class="nav-link text-light" href="paths/athletes/athletes.html"
-                >Atletas</a
+                >Athletes</a
               >
             </li>
             <li class="nav-item mx-4 mt-2 d-md-none d-block">
               <a type="button" class="nav-link text-light" id="scroll-button2"
-                >Informação</a
+                >Information</a
               >
             </li>
             <li class="nav-item mx-4 mt-2 d-md-block d-none">
               <a
                 class="nav-link text-light"
                 href="paths/modalities/modalities.html"
-                >Competições</a
+                >Competitions</a
               >
             </li>
             <li class="nav-item mx-4 mt-2 d-md-block d-none">
               <a class="nav-link text-light" href="paths/games/games.html"
-                >Jogos</a
+                >Games</a
               >
             </li>
           </ul>
@@ -223,25 +229,24 @@
     <main id="workArea">
       <div class="mt-5">&nbsp;</div>
       <!-- NAO RETIRAR ESTA DIV FUNCIONA PARA PODER COLOCAR INFORMACAO EM BAIXO DO CAROSEL-->
-      <h1 class="titulo" id="target-element1">Jogos Olímpicos</h1>
+      <h1 class="titulo" id="target-element1">Olympic Games</h1>
       <hr class="hrSpecial" />
       <div class="Scontainer">
         <p>
-          Os Jogos Olímpicos são uma competição esportiva internacional que
-          ocorre a cada quatro anos e reúne atletas de todos os países do mundo.
-          A primeira edição dos Jogos Olímpicos modernos ocorreu em Atenas,
-          Grécia, em 1896. Desde então, eles têm sido realizados de forma
-          intercalada, com as Olimpíadas de Inverno e de Verão acontecendo em
-          anos diferentes.
+          The Olympic Games are an international sports competition that takes
+          place every four years and brings together athletes from all countries
+          of the world. The first edition of the modern Olympic Games took place
+          in Athens, Greece, in 1896. Since then, they have been held in
+          alternating years, with the Winter and Summer Olympics occurring in
+          different years.
         </p>
         <hr class="hrSpecial" />
         <p>
-          São uma celebração do esporte e da amizade internacional, e têm como
-          objetivo promover a paz e a compreensão entre os povos de todo o
-          mundo. Eles também servem como uma plataforma para atletas de todas as
-          idades e níveis de habilidade competirem em uma ampla variedade de
-          esportes, incluindo atletismo, natação, ginástica, tênis, basquete e
-          muito mais.
+          They are a celebration of sports and international friendship, and aim
+          to promote peace and understanding among the peoples of the world.
+          They also serve as a platform for athletes of all ages and skill
+          levels to compete in a wide variety of sports, including athletics,
+          swimming, gymnastics, tennis, basketball, and many more.
         </p>
       </div>
 
@@ -273,22 +278,22 @@
                 <a
                   href="paths/athletes/athletes.html"
                   class="mt-3 btn btn-outline-light w-100"
-                  >Ver todos os Atletas</a
+                  >View all Athletes</a
                 >
                 <a
                   href="paths/countries/countries.html"
                   class="mt-3 btn btn-outline-light w-100"
-                  >Ver todos os Países</a
+                  >View all Countries</a
                 >
                 <a
                   href="paths/modalities/modalities.html"
                   class="mt-3 btn btn-outline-light w-100"
-                  >Ver todas as Competições</a
+                  >View all Competitions</a
                 >
                 <a
                   href="paths/games/games.html"
                   class="mt-3 btn btn-outline-light w-100"
-                  >Ver todos os Jogos</a
+                  >View all Games</a
                 >
               </div>
               <div class="my-5 d-lg-block d-none" id="Novidades">&nbsp;</div>
@@ -301,7 +306,7 @@
         <div class="row">
           <div class="col-2"></div>
           <div class="col-lg-4 col-8">
-            <h1 class="titulo mt-4 text-light">Receba Novidades</h1>
+            <h1 class="titulo mt-4 text-light">Receive News</h1>
             <div class="text-center mt-5 mb-5">
               <div class="form-floating mb-3">
                 <input
@@ -331,14 +336,10 @@
                   placeholder="+351"
                   data-bind="value: telemovel, valueUpdate: 'input', class: telemovelValido() ? 'is-valid':'is-invalid'"
                 />
-                <label for="floatingTelemovel">Telemóvel</label>
+                <label for="floatingTelemovel">Phone Number</label>
               </form>
-
-              <button
-                class="mt-3 btn btn-outline-light w-50"
-                data-bind="enable: activeNovidades, click: clearAll"
-              >
-                Receba Novidades
+              <button data-bind="enable: activeNovidades, click: clearAll">
+                Receive News
               </button>
             </div>
           </div>
@@ -371,6 +372,7 @@
           type="button"
           class="me-5 mb-5 text-"
           id="BackTop-button"
+          alt=""
         />
       </div>
     </main>
@@ -393,20 +395,20 @@
               </p>
             </div>
             <div class="col-3 d-md-block d-none">
-              <h3>Sobre o site</h3>
+              <h3>About</h3>
               <ul class="list-unstyled links">
                 <li><a href="#">Home</a></li>
-                <li><a href="paths/athletes/athletes.html">Atletas</a></li>
+                <li><a href="paths/athletes/athletes.html">Athletes</a></li>
                 <li>
-                  <a href="paths/modalities/modalities.html">Modalidades</a>
+                  <a href="paths/modalities/modalities.html">Modalities</a>
                 </li>
-                <li><a href="paths/countries/countries.html">Países</a></li>
-                <li><a href="paths/games/games.html">Jogos</a></li>
-                <li><a href="estatistica.html">Estatísticas</a></li>
+                <li><a href="paths/countries/countries.html">Countries</a></li>
+                <li><a href="paths/games/games.html">Games</a></li>
+                <li><a href="estatistica.html">Statistics</a></li>
               </ul>
             </div>
             <div class="col-3 d-md-block d-none">
-              <h3>Links importantes</h3>
+              <h3>Important Links</h3>
               <ul class="list-unstyled links">
                 <li><a href="https://www.ua.pt/">Universidade de Aveiro</a></li>
                 <li>
@@ -418,7 +420,7 @@
               </ul>
             </div>
             <div class="col-md-3 col-6">
-              <h3>Feito por:</h3>
+              <h3>Brought to you by:</h3>
               <ul class="list-unstyled links">
                 <li>
                   <a href="mailto:pmap@ua.pt">pmap@ua.pt</a>&nbsp;&nbsp;&nbsp;<a
@@ -448,6 +450,5 @@
     <script src="libs/popper.min.js"></script>
     <script src="libs/bootstrap-5.2.2-dist/js/bootstrap.bundle.js"></script>
     <script src="script.js"></script>
-    <script src="searchBar.js"></script>
   </body>
 </html>

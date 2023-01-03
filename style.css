@@ -6,7 +6,7 @@ body {
   /** Prevents Margin Collapse */
   padding-top: 1px;
   margin-top: -1px;
-  background-color: #F5F7FA;
+  background-color: #f5f7fa;
 }
 *,
 *::before,
@@ -326,8 +326,7 @@ li.page-item a {
   border-width: 2px;
 }
 
-.search input,
-.search input:focus {
+.search input {
   border: 0px;
   padding: 0;
   outline: none;
@@ -337,7 +336,7 @@ li.page-item a {
   transition: width 0.5s;
 }
 
-.search:hover input {
+.search input.active {
   width: 16rem;
   transition: width 0.5s;
 }
