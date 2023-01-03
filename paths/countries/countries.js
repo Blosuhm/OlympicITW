@@ -185,6 +185,12 @@ var vm = function () {
 };
 
 $(document).ready(function () {
+  $('#BackTop-button').click(function() {
+    // Scroll to the element with the ID "target-element"
+    $('html, body').animate({
+      scrollTop: $('#target-element').offset().top
+    }, 1000);
+  });
   console.log("ready!");
   ko.applyBindings(new vm());
   //on click event

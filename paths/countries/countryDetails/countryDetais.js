@@ -416,7 +416,13 @@ var vm = function () {
   console.log("VM initialized!");
 };
 
-$(document).ready(function () {
+$(document).ready(function () {~
+  $('#BackTop-button').click(function() {
+    // Scroll to the element with the ID "target-element"
+    $('html, body').animate({
+      scrollTop: $('#target-element').offset().top
+    }, 1000);
+  });
   console.log("document.ready!");
   ko.applyBindings(new vm());
 });

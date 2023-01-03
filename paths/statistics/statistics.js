@@ -283,7 +283,7 @@ $(document).ready(function() {
     
     let myChart0;
 
-   ajaxHelper("paths/countries/medalhas.json", "GET").done(function (data) {
+   ajaxHelper("../countries/medalhas.json", "GET").done(function (data) {
         var graph0Data = data;
 
         Countries = graph0Data.map(function(d) { return d.CountryName; });
