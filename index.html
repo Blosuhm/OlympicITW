@@ -93,7 +93,7 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
             <li
-              class="nav-item search rounded-pill d-flex justify-content-center align-items-center"
+              class="nav-item search rounded-pill d-flex justify-content-center align-items-center position-relative"
             >
               <button
                 class="fa fa-search mx-2 active text-white text-center btn border-0 p-2 fs-5"
@@ -103,8 +103,34 @@
                 class="text-white"
                 type="text"
                 placeholder="Search"
-                data-bind="value: searchInput, event: {input: activateSearch}"
+                aria-expanded="false"
+                data-bind="value: searchInput, valueUpdate: 'input', event: {input: activateSearch}"
               />
+              <!-- ko if: searched -->
+              <div
+                class="search-results position-absolute rounded-3 bg-white"
+                style="
+                  top: 3rem;
+                  max-height: 10em;
+                  overflow-y: scroll;
+                  overflow-x: hidden;
+                  z-index: 2000;
+                "
+              ><div class="p-3" >
+                <h4 class="fw-semibold">Athletes</h4>
+                <div data-bind="foreach: searchAthletes">
+                  <div>
+                    <a
+                    class="text-decoration-none text-dark"
+                      data-bind="text: Name, attr: {href: 'athletes/athlete.html?athlete='}"
+                      ></a
+                    >
+                  </div>
+              </div>
+              <div></div>
+              <div></div>
+              <div></div></div>
+              <!-- /ko -->
             </li>
             <li class="nav-item">
               <a

@@ -1,6 +1,6 @@
 function vm() {
   const self = this;
-
+  self.error = ko.observable("");
   self.nome = ko.observable("");
   self.email = ko.observable("");
   self.telemovel = ko.observable("");
@@ -42,7 +42,6 @@ function vm() {
       data: data ? JSON.stringify(data) : null,
       error: function (jqXHR, textStatus, errorThrown) {
         console.log("AJAX Call[" + uri + "] Fail...");
-        hideLoading();
         self.error(errorThrown);
       },
     });
@@ -63,34 +62,50 @@ function vm() {
   );
   self.minInputSize = ko.observable(3);
   self.searchInput = ko.observable("");
+  self.searched = ko.observable(false);
   self.searchCountries = ko.observableArray([]);
   self.searchAthletes = ko.observableArray([]);
   self.searchGames = ko.observableArray([]);
   self.searchModalities = ko.observableArray([]);
+  self.lastSearch = ko.observable(Date.now());
 
   self.activateSearch = function () {
-    if (self.searchInput().length > self.minInputSize) {
-      let countriesURL = `${self.countriesURL()}/search?q=${self.searchInput()}`;
-      ajaxHelper(countriesURL, "GET").done(function (data) {
-        self.searchCountries(data);
-      });
-      let athletesURL = `${self.athletesURL()}/search?q=${self.searchInput()}`;
-      ajaxHelper(athletesURL, "GET").done(function (data) {
-        self.searchAthletes(data);
-      });
-      let gamesURL = `${self.gamesURL()}/search?q=${self.searchInput()}`;
-      ajaxHelper(gamesURL, "GET").done(function (data) {
-        self.searchGames(data);
-      });
-      let modalitiesURL = `${self.modalitiesURL()}/search?q=${self.searchInput()}`;
-      ajaxHelper(modalitiesURL, "GET").done(function (data) {
-        self.searchModalities(data);
-      });
-    } else {
-      self.searchCountries([]);
-      self.searchAthletes([]);
-      self.searchGames([]);
-      self.searchModalities([]);
+    self.searched(false);
+    let timeElapsed = Date.now() - self.lastSearch();
+    console.log("time elapsed:", timeElapsed);
+    console.log(self.searchInput().length);
+    if (timeElapsed > 200) {
+      if (self.searchInput().length > self.minInputSize()) {
+        console.log("searching");
+
+        let countriesURL = `${self.countriesURL()}/searchbyname?q=${self.searchInput()}`;
+        ajaxHelper(countriesURL, "GET").done(function (data) {
+          self.searchCountries(data ? data : ["No results found"]);
+          // console.log("countries:", self.searchCountries());
+        });
+        let athletesURL = `${self.athletesURL()}/searchbyname?q=${self.searchInput()}`;
+        ajaxHelper(athletesURL, "GET").done(function (data) {
+          self.searchAthletes(data ? data : ["No results found"]);
+          console.log("athletes:", self.searchAthletes());
+        });
+        let gamesURL = `${self.gamesURL()}/searchbyname?q=${self.searchInput()}`;
+        ajaxHelper(gamesURL, "GET").done(function (data) {
+          self.searchGames(data ? data : ["No results found"]);
+          // console.log("games:", self.searchGames());
+        });
+        let modalitiesURL = `${self.modalitiesURL()}/searchbyname?q=${self.searchInput()}`;
+        ajaxHelper(modalitiesURL, "GET").done(function (data) {
+          self.searchModalities(data ? data : ["No results found"]);
+          // console.log("modalities:", self.searchModalities());
+        });
+        self.searched(true);
+      } else {
+        self.searchCountries([]);
+        self.searchAthletes([]);
+        self.searchGames([]);
+        self.searchModalities([]);
+      }
+      self.lastSearch(Date.now());
     }
     console.log("searched");
   };
@@ -209,12 +224,16 @@ $(".search").on("mouseenter", function () {
   $(".search input").focus();
   if (!$(".search input")[0].classList.contains("active")) {
     $(".search input").toggleClass("active");
+    $(".search").toggleClass("active");
+    $(".search-results").toggleClass("active");
   }
 });
 
 $(".search").on("focusout", function () {
   if ($(".search input")[0].classList.contains("active")) {
     $(".search input").toggleClass("active");
+    $(".search").toggleClass("active");
+    $(".search-results").toggleClass("active");
   }
   $(".search input").val("");
 });
