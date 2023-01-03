@@ -136,7 +136,7 @@
                       <div class="px-5 py-1 position-relative">
                         <a
                           class="mt-2"
-                          data-bind="attr: {href: `athleteDetails/athleteDetails.html?id=${Id}`}"
+                          data-bind="attr: {href: `../athletes/athleteDetails/athleteDetails.html?id=${Id}`}"
                           ><img
                             class="w-100 square rounded-circle"
                             data-bind="attr: {src: Photo}"
@@ -222,7 +222,7 @@
                       ></h5>
                       <a
                         class="btn btn-outline-primary"
-                        data-bind="attr: { href:'./countryDetails/countryDetails.html?id=' + Id }"
+                        data-bind="attr: { href:'../countries/countryDetails/countryDetails.html?id=' + Id }"
                         >View More</a
                       >
                     </div>
@@ -261,13 +261,17 @@
                     <div class="card-body">
                       <div class="p-3 mt-4 athlete-card">
                         <div class="shadow d-flex h-25 justify-content-center">
-                          <img
-                            type="button"
-                            class="modalitie w-100 img-fluid rounded-3"
-                            data-bind="attr: { src: Photo, alt: Name}, event: { click: function() { $parent.openModal(Id) } } "
-                            style="height: 8rem; width: 10rem"
-                            alt=""
-                          />
+                          <a
+                            data-bind="attr: {href: '../modalities/modalities.html?id='+Id}"
+                          >
+                            <img
+                              type="button"
+                              class="modalitie w-100 img-fluid rounded-3"
+                              data-bind="attr: { src: Photo, alt: Name} "
+                              style="height: 8rem; width: 10rem"
+                              alt=""
+                            />
+                          </a>
                           <!-- Esta no countries.js a config do .fav -->
                           <button
                             class="fa fa-heart text-danger position-absolute shadow bg-white btn square border-0 rounded-circle fs-4"
@@ -329,7 +333,7 @@
                         </a>
                         <a
                           class="d-flex justify-content-center align-items-center m-1"
-                          data-bind="attr: {href: `gameDetails/gameDetails.html?id=${Id}`}"
+                          data-bind="attr: {href: `../games/gameDetails/gameDetails.html?id=${Id}`}"
                           style="width: 50%"
                         >
                           <img
