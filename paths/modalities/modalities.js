@@ -60,7 +60,7 @@ var vm = function () {
       self.modalName(data.Name);
       self.modalPhoto(data.Photo);
       self.modalModalities(data.Modalities);
-      var soma = 0;
+      let soma = 0;
       data.Modalities.forEach((element) => {
         soma += element.Results;
       });
@@ -70,21 +70,25 @@ var vm = function () {
     });
   };
 
-  //Favourites
+  //* Favourites
   self.loadFavorites = ko.observableArray(
-    JSON.parse(localStorage.getItem("countries")) || []
+    JSON.parse(localStorage.getItem("modalities")) || []
   );
   self.isFavorite = function (id) {
-    return self.loadFavorites().includes(id);
+    return self
+      .loadFavorites()
+      .map((item) => item.Id)
+      .includes(id);
   };
-  self.toggleFavorite = function (id) {
-    if (self.isFavorite(id)) {
-      self.loadFavorites.remove(id);
+  self.toggleFavorite = function (data) {
+    console.log(data);
+    if (self.isFavorite(data.Id)) {
+      self.loadFavorites.remove(data);
     } else {
-      self.loadFavorites.push(id);
+      self.loadFavorites.push(data);
     }
-    localStorage.setItem("countries", JSON.stringify(self.loadFavorites()));
-    console.log(localStorage.getItem("countries"));
+    localStorage.setItem("modalities", JSON.stringify(self.loadFavorites()));
+    console.log(localStorage.getItem("modalities"));
   };
 
   //--- Page Events

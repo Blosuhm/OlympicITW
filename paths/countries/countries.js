@@ -45,13 +45,17 @@ var vm = function () {
     JSON.parse(localStorage.getItem("countries")) || []
   );
   self.isFavorite = function (id) {
-    return self.loadFavorites().includes(id);
+    return self
+      .loadFavorites()
+      .map((item) => item.Id)
+      .includes(id);
   };
-  self.toggleFavorite = function (id) {
-    if (self.isFavorite(id)) {
-      self.loadFavorites.remove(id);
+  self.toggleFavorite = function (data) {
+    console.log(data);
+    if (self.isFavorite(data.Id)) {
+      self.loadFavorites.remove(data);
     } else {
-      self.loadFavorites.push(id);
+      self.loadFavorites.push(data);
     }
     localStorage.setItem("countries", JSON.stringify(self.loadFavorites()));
     console.log(localStorage.getItem("countries"));
@@ -185,11 +189,14 @@ var vm = function () {
 };
 
 $(document).ready(function () {
-  $('#BackTop-button').click(function() {
+  $("#BackTop-button").click(function () {
     // Scroll to the element with the ID "target-element"
-    $('html, body').animate({
-      scrollTop: $('#target-element').offset().top
-    }, 1000);
+    $("html, body").animate(
+      {
+        scrollTop: $("#target-element").offset().top,
+      },
+      1000
+    );
   });
   console.log("ready!");
   ko.applyBindings(new vm());

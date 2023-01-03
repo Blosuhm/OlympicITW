@@ -63,6 +63,14 @@
               <a
                 class="nav-link"
                 aria-current="page"
+                href="../favorites/favorites.html"
+                ><i class="fa fa-heart-o text-danger"></i> Favorites</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                aria-current="page"
                 href="../athletes/athletes.html"
                 ><i class="fa fa-user-o text-warning"></i> Athletes</a
               >
@@ -212,7 +220,7 @@
                 </a>
                 <button
                   class="fa position-absolute shadow bg-white btn square border-0 rounded-circle fs-4"
-                  data-bind="click: function() {$parent.toggleFavorite(Id)} , attr: {id: 'fav-' + Id}, css: {'text-danger': $parent.isFavorite(Id), 'fa-heart': $parent.isFavorite(Id), 'fa-heart-o': !$parent.isFavorite(Id)}"
+                  data-bind="click: function() {$parent.toggleFavorite($data)} , attr: {id: 'fav-' + Id}, css: {'text-danger': $parent.isFavorite(Id), 'fa-heart': $parent.isFavorite(Id), 'fa-heart-o': !$parent.isFavorite(Id)}"
                   style="width: 3rem; top: 11rem; left: 5rem"
                   aria-hidden="true"
                 ></button>

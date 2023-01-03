@@ -62,6 +62,14 @@
               <a
                 class="nav-link"
                 aria-current="page"
+                href="../favorites/favorites.html"
+                ><i class="fa fa-heart-o text-danger"></i> Favorites</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                aria-current="page"
                 href="../athletes/athletes.html"
                 ><i class="fa fa-user-o text-warning"></i> Athletes</a
               >
@@ -228,7 +236,7 @@
                 <!-- Esta no countries.js a config do .fav -->
                 <button
                   class="shadow fav btn m-0 fa fa-heart-o fa-heart rounded-circle p-3 bg-white position-absolute fs-4"
-                  data-bind="click: function() {$parent.toggleFavorite(Id)} , attr: {id: 'fav-' + Id}, css: {'text-danger': $parent.isFavorite(Id), 'fa-heart': $parent.isFavorite(Id), 'fa-heart-o': !$parent.isFavorite(Id)}"
+                  data-bind="click: function() {$parent.toggleFavorite($data)} , attr: {id: 'fav-' + Id}, css: {'text-danger': $parent.isFavorite(Id), 'fa-heart': $parent.isFavorite(Id), 'fa-heart-o': !$parent.isFavorite(Id)}"
                   title="Selecione para adicionar aos favoritos"
                   style="top: 10.5rem"
                 ></button>
