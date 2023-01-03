@@ -341,9 +341,13 @@ li.page-item a {
   width: 14rem;
   transition: width 0.5s ease-in-out;
 }
-.search-results {
-  display: none;
+
+.search-results-column {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 20rem;
 }
-.search.active .search-results {
-  display: block;
+
+.unclickable {
+  pointer-events: none;
 }

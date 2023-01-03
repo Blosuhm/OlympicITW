@@ -68,6 +68,24 @@ function vm() {
   self.searchGames = ko.observableArray([]);
   self.searchModalities = ko.observableArray([]);
   self.lastSearch = ko.observable(Date.now());
+  self.expandSearch = function () {
+    $(".search input").focus();
+    if (!$(".search input")[0].classList.contains("active")) {
+      $(".search input").toggleClass("active");
+      $(".search").toggleClass("active");
+      $(".search-results").toggleClass("active");
+    }
+  };
+  self.collapseSearch = function () {
+    if ($(".search input")[0].classList.contains("active")) {
+      $(".search input").toggleClass("active");
+      $(".search").toggleClass("active");
+      $(".search-results").toggleClass("active");
+    }
+    // $(".search input").val("");
+    self.searchInput("");
+    self.activateSearch();
+  };
 
   self.activateSearch = function () {
     self.searched(false);
@@ -77,26 +95,39 @@ function vm() {
     if (timeElapsed > 200) {
       if (self.searchInput().length > self.minInputSize()) {
         console.log("searching");
+        self.searchAthletes([{ Name: "Loading...", Id: 0 }]);
+        self.searchCountries([{ Name: "Loading...", Id: 0 }]);
+        self.searchGames([{ Name: "Loading...", Id: 0 }]);
+        self.searchModalities([{ Name: "Loading...", Id: 0 }]);
 
         let countriesURL = `${self.countriesURL()}/searchbyname?q=${self.searchInput()}`;
         ajaxHelper(countriesURL, "GET").done(function (data) {
-          self.searchCountries(data ? data : ["No results found"]);
-          // console.log("countries:", self.searchCountries());
+          console.log(data);
+          self.searchCountries(
+            data.length > 0 ? data : [{ Name: "No results found", Id: 0 }]
+          );
+          console.log("countries:", self.searchCountries());
         });
         let athletesURL = `${self.athletesURL()}/searchbyname?q=${self.searchInput()}`;
         ajaxHelper(athletesURL, "GET").done(function (data) {
-          self.searchAthletes(data ? data : ["No results found"]);
+          self.searchAthletes(
+            data.length > 0 ? data : [{ Name: "No results found", Id: 0 }]
+          );
           console.log("athletes:", self.searchAthletes());
         });
         let gamesURL = `${self.gamesURL()}/searchbyname?q=${self.searchInput()}`;
         ajaxHelper(gamesURL, "GET").done(function (data) {
-          self.searchGames(data ? data : ["No results found"]);
-          // console.log("games:", self.searchGames());
+          self.searchGames(
+            data.length > 0 ? data : [{ Name: "No results found", Id: 0 }]
+          );
+          console.log("games:", self.searchGames());
         });
         let modalitiesURL = `${self.modalitiesURL()}/searchbyname?q=${self.searchInput()}`;
         ajaxHelper(modalitiesURL, "GET").done(function (data) {
-          self.searchModalities(data ? data : ["No results found"]);
-          // console.log("modalities:", self.searchModalities());
+          self.searchModalities(
+            data.length > 0 ? data : [{ Name: "No results found", Id: 0 }]
+          );
+          console.log("modalities:", self.searchModalities());
         });
         self.searched(true);
       } else {
@@ -217,23 +248,3 @@ $("document").ready(function () {
 });
 
 //* End of Map
-
-//! Search
-
-$(".search").on("mouseenter", function () {
-  $(".search input").focus();
-  if (!$(".search input")[0].classList.contains("active")) {
-    $(".search input").toggleClass("active");
-    $(".search").toggleClass("active");
-    $(".search-results").toggleClass("active");
-  }
-});
-
-$(".search").on("focusout", function () {
-  if ($(".search input")[0].classList.contains("active")) {
-    $(".search input").toggleClass("active");
-    $(".search").toggleClass("active");
-    $(".search-results").toggleClass("active");
-  }
-  $(".search input").val("");
-});
