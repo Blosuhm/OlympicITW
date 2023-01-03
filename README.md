@@ -1,3 +1,0 @@
-# OlympicITW
-
-- ITW final project
